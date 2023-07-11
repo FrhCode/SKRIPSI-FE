@@ -12,9 +12,9 @@ export default function Header() {
   });
 
   return (
-    <div className="items-center flex justify-between px-[5vw] py-11">
+    <div className="flex items-center justify-between px-[5vw] py-11">
       <p className="text-2xl font-medium tracking-wide">Dokter Lele</p>
-      <ul className="flex font-medium gap-9 text-slate-600">
+      <ul className="flex gap-9 font-medium text-slate-600">
         <li>Blog</li>
         <li>Courses</li>
         <li>Discord</li>
@@ -25,7 +25,7 @@ export default function Header() {
       </ul>
       <div className="flex gap-4">
         <motion.button
-          className="flex items-center justify-center p-3 border-2 rounded-full border-slate-400"
+          className="flex items-center justify-center rounded-full border-2 border-slate-400 p-3"
           whileHover={{ borderColor: "var(--slate-900)" }}
         >
           <SunSvg className="h-7" />
@@ -76,7 +76,7 @@ export function AnimationButton() {
       }}
       // whileHover={{ borderColor: "var(--slate-900)" }}
     >
-      <div className="relative w-9 h-9">
+      <div className="relative h-9 w-9">
         <Image
           src={leleIcon}
           fill
@@ -89,7 +89,7 @@ export function AnimationButton() {
         variants={rotationVariants}
         animate={rotationDirection}
       >
-        <ColoredBorderRadiusSvg className="w-full h-full" />
+        <ColoredBorderRadiusSvg className="h-full w-full" />
       </motion.div>
     </motion.button>
   );
