@@ -1,27 +1,23 @@
 "use client";
 import SunSvg from "@/Components/SunSvg";
 import React, { useEffect, useState } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion, MotionConfig, Variants } from "framer-motion";
 import ColoredBorderRadiusSvg from "@/Components/ColoredBorderRadiusSvg";
 import Image from "next/image";
 import leleIcon from "@/public/image-260nw-2278720581.png";
 
 export default function Header() {
-  useEffect(() => {
-    console.log("HI");
-  });
-
   return (
     <div className="flex items-center justify-between px-[5vw] py-11">
       <p className="text-2xl font-medium tracking-wide">Dokter Lele</p>
       <ul className="flex gap-9 font-medium text-slate-600">
-        <li>Blog</li>
-        <li>Courses</li>
-        <li>Discord</li>
-        <li>Chats</li>
-        <li>Calls</li>
-        <li>Workshops</li>
-        <li>About</li>
+        <ListMenu text="Blog" />
+        <ListMenu text="Courses" />
+        <ListMenu text="Discord" />
+        <ListMenu text="Chats" />
+        <ListMenu text="Calls" />
+        <ListMenu text="Workshops" />
+        <ListMenu text="About" />
       </ul>
       <div className="flex gap-4">
         <motion.button
@@ -37,26 +33,49 @@ export default function Header() {
   );
 }
 
-export function AnimationButton() {
+type ListMenuProps = {
+  text: string;
+};
+
+function ListMenu({ text }: ListMenuProps) {
+  const [isHovering, setIsHovering] = useState(false);
+  return (
+    <MotionConfig transition={{ duration: 0.3 }}>
+      <motion.li
+        className="group relative cursor-pointer"
+        animate={isHovering ? { color: "var(--slate-950)" } : {}}
+        onHoverStart={() => setIsHovering(true)}
+        onHoverEnd={() => setIsHovering(false)}
+      >
+        {text}
+        <motion.div
+          className="h-[2px] rounded bg-black duration-150"
+          initial={{ width: 0 }}
+          animate={isHovering ? { width: "100%" } : { width: "0%" }}
+        ></motion.div>
+      </motion.li>
+    </MotionConfig>
+  );
+}
+
+function AnimationButton() {
   const rotationVariants: Variants = {
     rotateToleft: {
-      rotate: -360,
+      rotate: [360, 0],
       transition: {
         duration: 15,
         ease: "linear",
         repeat: Infinity,
         repeatType: "loop",
-        repeatDelay: 0,
       },
     },
     rotateToRight: {
-      rotate: 360,
+      rotate: [0, 360],
       transition: {
-        duration: 5,
+        duration: 3,
         ease: "linear",
         repeat: Infinity,
         repeatType: "loop",
-        repeatDelay: 0,
       },
     },
   };
