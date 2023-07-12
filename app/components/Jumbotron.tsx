@@ -1,5 +1,5 @@
 "use client";
-import lele from "@/public/lele-1.png";
+import lele from "@/public/lele jumbotron.png";
 import Image from "next/image";
 import { MotionConfig, Variants, motion } from "framer-motion";
 
@@ -15,7 +15,7 @@ const textVariant: Variants = {
 export default function Jumbotron() {
   return (
     <MotionConfig
-      transition={{ duration: 0.4, type: "tween", ease: "easeInOut" }}
+      transition={{ duration: 0.4, type: "tween", ease: "easeOut" }}
     >
       <div className="flex justify-between gap-10 px-[8vw] py-11">
         <motion.div
@@ -39,13 +39,13 @@ export default function Jumbotron() {
         <div className="w-7/12">
           <motion.div
             className="relative h-96 w-full"
-            initial={{ opacity: 0, scale: 1.5 }}
+            initial={{ opacity: 0, scale: 1.3 }}
             animate={{ opacity: 1, scale: 1 }}
           >
             <Image
               src={lele}
               fill
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "contain" }}
               alt="lele icon"
             />
           </motion.div>

@@ -40,7 +40,7 @@ type ListMenuProps = {
 function ListMenu({ text }: ListMenuProps) {
   const [isHovering, setIsHovering] = useState(false);
   return (
-    <MotionConfig transition={{ duration: 0.3 }}>
+    <MotionConfig transition={{ duration: 0.1 }}>
       <motion.li
         className="group relative cursor-pointer"
         animate={isHovering ? { color: "var(--slate-950)" } : {}}
