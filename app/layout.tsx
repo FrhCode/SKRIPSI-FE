@@ -19,12 +19,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isProduction = process.env.NODE_ENV;
+  const isDevelopment = process.env.NODE_ENV === "development";
   return (
     <html lang="en">
       <body
         className={clsx(roboto.variable, "font-sans", {
-          "debug-screens": isProduction,
+          "debug-screens": isDevelopment,
         })}
       >
         {children}

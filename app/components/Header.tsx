@@ -21,7 +21,7 @@ export default function Header() {
       </ul>
       <div className="flex gap-4">
         <motion.button
-          className="flex items-center justify-center rounded-full border-2 border-slate-400 p-3"
+          className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3"
           whileHover={{ borderColor: "var(--slate-900)" }}
         >
           <SunSvg className="h-7" />
@@ -42,7 +42,7 @@ function ListMenu({ text }: ListMenuProps) {
   return (
     <MotionConfig transition={{ duration: 0.1 }}>
       <motion.li
-        className="group relative cursor-pointer"
+        className="group relative cursor-pointer text-lg"
         animate={isHovering ? { color: "var(--slate-950)" } : {}}
         onHoverStart={() => setIsHovering(true)}
         onHoverEnd={() => setIsHovering(false)}
@@ -93,7 +93,6 @@ function AnimationButton() {
       onHoverEnd={() => {
         setRotationDirection("rotateToleft");
       }}
-      // whileHover={{ borderColor: "var(--slate-900)" }}
     >
       <div className="relative h-9 w-9">
         <Image
