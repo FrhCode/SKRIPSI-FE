@@ -10,9 +10,3 @@ services:
       - .env
     ports:
       - 3002:3000
-    # volumes:
-    # - ./:/app
-    # - /app/node_modules
-    # - /app/vendor
-    # entrypoint: ./start.sh
-    # command: tail -F /dev/null
