@@ -38,7 +38,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER_NAME }}
           password: ${{ secrets.PASSWORD }}
-          port: 22
           script: |
             docker rm -f skripsi-fe
             docker pull farhan100799/skripsi-fe:latest
