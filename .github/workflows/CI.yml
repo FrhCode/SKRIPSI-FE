@@ -42,3 +42,4 @@ jobs:
             docker rm -f skripsi-fe
             docker pull farhan100799/skripsi-fe:latest
             docker run -p 3002:3000 -d --name skripsi-fe farhan100799/skripsi-fe
+            docker rmi $(docker images -q --filter "dangling=true")
