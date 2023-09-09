@@ -25,7 +25,10 @@ export default function Jumbotron() {
             initial="initial"
             animate="animate"
           >
-            <motion.p className="text-4xl leading-snug" variants={textVariant}>
+            <motion.p
+              className="text-4xl leading-snug md:text-3xl"
+              variants={textVariant}
+            >
               Mencegah peternak merugi melalui aplikasi pakar berkualitas
             </motion.p>
             <motion.button

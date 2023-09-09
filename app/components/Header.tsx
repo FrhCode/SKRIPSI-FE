@@ -1,6 +1,6 @@
 "use client";
 import SunSvg from "@/Components/SunSvg";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AnimatePresence, motion, MotionConfig, Variants } from "framer-motion";
 import ColoredBorderRadiusSvg from "@/Components/ColoredBorderRadiusSvg";
 import Image from "next/image";
@@ -10,10 +10,10 @@ import useStore from "@/zustand/store";
 import MiniNav from "./MiniNav";
 
 export default function Header() {
-  const [isNavOpen, toggleIsNavOpen] = useStore((state) => [
-    state.isNavOpen,
-    state.toggleIsNavOpen,
-  ]);
+  const isNavOpen = useStore((state) => state.isNavOpen);
+  const toggleIsNavOpen = useStore((state) => state.toggleIsNavOpen);
+
+  const toogleButtonMiniNavRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="relative px-[5vw] py-11">
@@ -36,19 +36,26 @@ export default function Header() {
             <SunSvg className="h-7" />
           </motion.button>
 
-          <motion.button
+          <motion.div
+            ref={toogleButtonMiniNavRef}
             className="hidden items-center justify-center rounded-full border-2 border-slate-200 p-3 lg:flex"
+            onClick={(e) => toggleIsNavOpen()}
             whileHover={{ borderColor: "var(--slate-900)" }}
-            onClick={() => toggleIsNavOpen()}
+            whileFocus={{ outlineColor: "var(--slate-900)" }}
+            contentEditable={true}
+            suppressContentEditableWarning
+            role="button"
+            tabIndex={0}
           >
             <HamburgerSvg className="h-7" />
-          </motion.button>
+          </motion.div>
 
           <AnimationButton />
         </div>
       </div>
-
-      <AnimatePresence>{isNavOpen && <MiniNav />}</AnimatePresence>
+      <AnimatePresence>
+        {isNavOpen && <MiniNav toogleButtonRef={toogleButtonMiniNavRef} />}
+      </AnimatePresence>
     </div>
   );
 }
