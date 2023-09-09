@@ -17,10 +17,10 @@ export default function Jumbotron() {
     <MotionConfig
       transition={{ duration: 0.4, type: "tween", ease: "easeOut" }}
     >
-      <div className="px-[10vw] py-11">
-        <div className="mx-auto flex max-w-7xl justify-between gap-10">
+      <div className="overflow-x-hidden px-[10vw] py-11">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 lg:grid-cols-1">
           <motion.div
-            className="w-5/12 pt-16"
+            className="pt-16 lg:order-1"
             variants={variant}
             initial="initial"
             animate="animate"
@@ -29,7 +29,7 @@ export default function Jumbotron() {
               Mencegah peternak merugi melalui aplikasi pakar berkualitas
             </motion.p>
             <motion.button
-              className="mt-14 rounded-full bg-black px-6 py-5 text-lg font-medium text-white"
+              className="mt-14 rounded-full bg-black px-7 py-6 font-medium text-white lg:mt-7"
               variants={textVariant}
               whileTap={{ scale: 0.97, backgroundColor: "var(--slate-950)" }}
               transition={{ duration: 0.1 }}
@@ -37,7 +37,7 @@ export default function Jumbotron() {
               Mulai Konsultasi
             </motion.button>
           </motion.div>
-          <div className="w-7/12">
+          <div className="">
             <motion.div
               className="relative h-96 w-full"
               initial={{ opacity: 0, scale: 1.3 }}

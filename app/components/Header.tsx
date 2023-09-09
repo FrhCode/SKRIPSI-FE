@@ -1,17 +1,25 @@
 "use client";
 import SunSvg from "@/Components/SunSvg";
-import React, { useEffect, useState } from "react";
-import { motion, MotionConfig, Variants } from "framer-motion";
+import React, { useState } from "react";
+import { AnimatePresence, motion, MotionConfig, Variants } from "framer-motion";
 import ColoredBorderRadiusSvg from "@/Components/ColoredBorderRadiusSvg";
 import Image from "next/image";
 import leleIcon from "@/public/image-260nw-2278720581.png";
+import HamburgerSvg from "@/Components/HamburgerSvg";
+import useStore from "@/zustand/store";
+import MiniNav from "./MiniNav";
 
 export default function Header() {
+  const [isNavOpen, toggleIsNavOpen] = useStore((state) => [
+    state.isNavOpen,
+    state.toggleIsNavOpen,
+  ]);
+
   return (
-    <div className="px-[5vw] py-11">
+    <div className="relative px-[5vw] py-11">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <p className="text-2xl font-medium tracking-wide">Dokter Lele</p>
-        <ul className="flex gap-9 font-medium text-slate-500">
+        <ul className="flex gap-9 font-medium text-slate-500 lg:hidden">
           <ListMenu text="Blog" />
           <ListMenu text="Courses" />
           <ListMenu text="Discord" />
@@ -22,15 +30,25 @@ export default function Header() {
         </ul>
         <div className="flex gap-4">
           <motion.button
-            className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3"
+            className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3 lg:hidden"
             whileHover={{ borderColor: "var(--slate-900)" }}
           >
             <SunSvg className="h-7" />
           </motion.button>
 
+          <motion.button
+            className="hidden items-center justify-center rounded-full border-2 border-slate-200 p-3 lg:flex"
+            whileHover={{ borderColor: "var(--slate-900)" }}
+            onClick={() => toggleIsNavOpen()}
+          >
+            <HamburgerSvg className="h-7" />
+          </motion.button>
+
           <AnimationButton />
         </div>
       </div>
+
+      <AnimatePresence>{isNavOpen && <MiniNav />}</AnimatePresence>
     </div>
   );
 }
@@ -41,6 +59,7 @@ type ListMenuProps = {
 
 function ListMenu({ text }: ListMenuProps) {
   const [isHovering, setIsHovering] = useState(false);
+
   return (
     <MotionConfig transition={{ duration: 0.1 }}>
       <motion.li
