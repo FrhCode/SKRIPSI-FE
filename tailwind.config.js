@@ -7,6 +7,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./Components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: ["overflow-hidden"],
   theme: {
     fontFamily: {
       sans: ["var(--roboto)", "sans-serif"],

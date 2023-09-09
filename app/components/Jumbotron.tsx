@@ -18,9 +18,9 @@ export default function Jumbotron() {
       transition={{ duration: 0.4, type: "tween", ease: "easeOut" }}
     >
       <div className="overflow-x-hidden px-[10vw] py-11">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 lg:grid-cols-1">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 lg:grid-cols-1 md:gap-0">
           <motion.div
-            className="pt-16 lg:order-1"
+            className="pt-16 lg:order-1 lg:py-0"
             variants={variant}
             initial="initial"
             animate="animate"
@@ -39,7 +39,7 @@ export default function Jumbotron() {
           </motion.div>
           <div className="">
             <motion.div
-              className="relative h-96 w-full"
+              className="relative aspect-[4/3] w-full"
               initial={{ opacity: 0, scale: 1.3 }}
               animate={{ opacity: 1, scale: 1 }}
             >

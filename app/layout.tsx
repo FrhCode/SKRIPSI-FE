@@ -20,6 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const isDevelopment = process.env.NODE_ENV === "development";
+
   return (
     <html lang="en">
       <body

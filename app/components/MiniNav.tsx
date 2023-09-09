@@ -1,6 +1,6 @@
 import SunSvg from "@/Components/SunSvg";
 import React, { useState } from "react";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 let miniNavVariant: Variants = {
   open: {
@@ -14,7 +14,7 @@ let miniNavVariant: Variants = {
 export default function MiniNav() {
   return (
     <motion.div
-      className="absolute left-0 right-0 top-full z-10 bg-white"
+      className="absolute left-0 right-0 top-full z-10 h-[calc(100vh-144px)] overflow-y-auto bg-white"
       variants={miniNavVariant}
       initial="close"
       animate="open"

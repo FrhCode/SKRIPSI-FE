@@ -8,9 +8,13 @@ interface Store {
 const useStore = create<Store>((set) => ({
   isNavOpen: false,
   toggleIsNavOpen: (toogle) =>
-    set((state) => ({
-      isNavOpen: toogle !== undefined ? toogle : !state.isNavOpen,
-    })),
+    set((state) => {
+      const currentNavState = toogle !== undefined ? toogle : !state.isNavOpen;
+      document.body.classList.toggle("overflow-hidden", currentNavState);
+      return {
+        isNavOpen: currentNavState,
+      };
+    }),
 }));
 
 export default useStore;
