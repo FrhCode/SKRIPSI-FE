@@ -52,18 +52,15 @@ export default function MiniNav({ toogleButtonRef }: miniNavProps) {
       </ul>
 
       <div className="flex h-36 items-center justify-center">
-        <motion.div
-          className="hidden items-center justify-center gap-3 rounded-full border-2 border-slate-200 px-6 py-3 lg:flex"
+        <motion.button
+          className="hidden items-center justify-center gap-3 rounded-full border-2 border-slate-200 px-6 py-3 duration-300 focus:border-slate-900 lg:flex"
           whileHover={{ borderColor: "var(--slate-900)" }}
-          whileFocus={{ outlineColor: "var(--slate-900)" }}
-          contentEditable={true}
-          suppressContentEditableWarning
           role="button"
           tabIndex={0}
         >
           <SunSvg className="h-6" />
           <p className="text-xs">Berganti ke mode gelap</p>
-        </motion.div>
+        </motion.button>
       </div>
     </motion.div>
   );
