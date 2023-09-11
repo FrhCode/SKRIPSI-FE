@@ -1,55 +1,51 @@
 "use client";
 import SunSvg from "@/Components/SunSvg";
-import React, { useRef, useState } from "react";
-import { AnimatePresence, motion, MotionConfig, Variants } from "framer-motion";
-import ColoredBorderRadiusSvg from "@/Components/ColoredBorderRadiusSvg";
-import Image from "next/image";
-import leleIcon from "@/public/image-260nw-2278720581.png";
+import { useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import HamburgerSvg from "@/Components/HamburgerSvg";
 import useStore from "@/zustand/store";
-import MiniNav from "./MiniNav";
+import MiniNav from "./Header/MiniNav";
+import AnimationButton from "./Header/AnimationButton";
+import ListMenu from "./Header/ListMenu";
 
 export default function Header() {
   const isNavOpen = useStore((state) => state.isNavOpen);
   const toggleIsNavOpen = useStore((state) => state.toggleIsNavOpen);
 
-  const toogleButtonMiniNavRef = useRef<HTMLDivElement>(null);
+  const toogleButtonMiniNavRef = useRef<HTMLButtonElement>(null);
 
   return (
     <div className="relative px-[5vw] py-11">
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
+      <div className="mx-auto flex max-w-[95rem] items-center justify-between">
         <p className="text-2xl font-medium tracking-wide">Dokter Lele</p>
-        <ul className="flex gap-9 font-medium text-slate-500 lg:hidden">
-          <ListMenu text="Blog" />
-          <ListMenu text="Courses" />
-          <ListMenu text="Discord" />
-          <ListMenu text="Chats" />
-          <ListMenu text="Calls" />
-          <ListMenu text="Workshops" />
-          <ListMenu text="About" />
+        <ul className="hidden gap-9 font-medium text-slate-500 lg:flex">
+          <ListMenu>Blog</ListMenu>
+          <ListMenu>Courses</ListMenu>
+          <ListMenu>Discord</ListMenu>
+          <ListMenu>Chats</ListMenu>
+          <ListMenu>Calls</ListMenu>
+          <ListMenu>Workshops</ListMenu>
+          <ListMenu>About</ListMenu>
         </ul>
         <div className="flex gap-4">
           <motion.button
-            className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3 lg:hidden"
+            className="hidden items-center justify-center rounded-full border-2 border-slate-200 p-3 lg:flex"
             whileHover={{ borderColor: "var(--slate-900)" }}
           >
             <SunSvg className="h-7" />
           </motion.button>
 
-          <motion.div
+          <motion.button
             ref={toogleButtonMiniNavRef}
-            className="hidden items-center justify-center rounded-full border-2 border-slate-200 p-3 lg:flex"
+            className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3 transition focus:border-slate-900 lg:hidden"
             onClick={(e) => toggleIsNavOpen()}
             whileHover={{ borderColor: "var(--slate-900)" }}
             whileFocus={{ outlineColor: "var(--slate-900)" }}
-            contentEditable={true}
-            suppressContentEditableWarning
             role="button"
             tabIndex={0}
           >
             <HamburgerSvg className="h-7" />
-          </motion.div>
-
+          </motion.button>
           <AnimationButton />
         </div>
       </div>
@@ -57,86 +53,5 @@ export default function Header() {
         {isNavOpen && <MiniNav toogleButtonRef={toogleButtonMiniNavRef} />}
       </AnimatePresence>
     </div>
-  );
-}
-
-type ListMenuProps = {
-  text: string;
-};
-
-function ListMenu({ text }: ListMenuProps) {
-  const [isHovering, setIsHovering] = useState(false);
-
-  return (
-    <MotionConfig transition={{ duration: 0.1 }}>
-      <motion.li
-        className="group relative cursor-pointer text-lg"
-        animate={isHovering ? { color: "var(--slate-950)" } : {}}
-        onHoverStart={() => setIsHovering(true)}
-        onHoverEnd={() => setIsHovering(false)}
-      >
-        {text}
-        <motion.div
-          className="h-[2px] rounded bg-black duration-150"
-          initial={{ width: 0 }}
-          animate={isHovering ? { width: "100%" } : { width: "0%" }}
-        ></motion.div>
-      </motion.li>
-    </MotionConfig>
-  );
-}
-
-function AnimationButton() {
-  const rotationVariants: Variants = {
-    rotateToleft: {
-      rotate: [360, 0],
-      transition: {
-        duration: 15,
-        ease: "linear",
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-    },
-    rotateToRight: {
-      rotate: [0, 360],
-      transition: {
-        duration: 3,
-        ease: "linear",
-        repeat: Infinity,
-        repeatType: "loop",
-      },
-    },
-  };
-
-  const [rotationDirection, setRotationDirection] = useState<
-    "rotateToleft" | "rotateToRight"
-  >("rotateToleft");
-
-  return (
-    <motion.button
-      className="relative p-2"
-      onHoverStart={() => {
-        setRotationDirection("rotateToRight");
-      }}
-      onHoverEnd={() => {
-        setRotationDirection("rotateToleft");
-      }}
-    >
-      <div className="relative h-9 w-9">
-        <Image
-          src={leleIcon}
-          fill
-          style={{ objectFit: "cover" }}
-          alt="lele icon"
-        />
-      </div>
-      <motion.div
-        className="absolute inset-0"
-        variants={rotationVariants}
-        animate={rotationDirection}
-      >
-        <ColoredBorderRadiusSvg className="h-full w-full" />
-      </motion.div>
-    </motion.button>
   );
 }

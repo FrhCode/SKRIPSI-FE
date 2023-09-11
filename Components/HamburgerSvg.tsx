@@ -1,6 +1,8 @@
 import React from "react";
 
-type Props = { className: string };
+interface Props {
+  className: string;
+}
 
 function HamburgerSvg(props: Props) {
   return (

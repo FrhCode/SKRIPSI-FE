@@ -13,7 +13,7 @@ let miniNavVariant: Variants = {
 };
 
 interface miniNavProps {
-  toogleButtonRef: RefObject<HTMLDivElement>;
+  toogleButtonRef: RefObject<HTMLButtonElement>;
 }
 
 export default function MiniNav({ toogleButtonRef }: miniNavProps) {
@@ -53,7 +53,7 @@ export default function MiniNav({ toogleButtonRef }: miniNavProps) {
 
       <div className="flex h-36 items-center justify-center">
         <motion.button
-          className="hidden items-center justify-center gap-3 rounded-full border-2 border-slate-200 px-6 py-3 duration-300 focus:border-slate-900 lg:flex"
+          className="flex items-center justify-center gap-3 rounded-full border-2 border-slate-200 px-6 py-3 transition focus:border-slate-900"
           whileHover={{ borderColor: "var(--slate-900)" }}
           role="button"
           tabIndex={0}
@@ -65,9 +65,9 @@ export default function MiniNav({ toogleButtonRef }: miniNavProps) {
     </motion.div>
   );
 }
-type ListMenuMobileProps = {
+interface ListMenuMobileProps {
   text: string;
-};
+}
 
 function ListMenuMobile({ text }: ListMenuMobileProps) {
   return (

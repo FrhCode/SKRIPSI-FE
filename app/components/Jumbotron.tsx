@@ -2,6 +2,7 @@
 import lele from "@/public/lele jumbotron.png";
 import Image from "next/image";
 import { MotionConfig, Variants, motion } from "framer-motion";
+import Container from "../../components/Container";
 
 const variant: Variants = {
   initial: {},
@@ -17,16 +18,29 @@ export default function Jumbotron() {
     <MotionConfig
       transition={{ duration: 0.4, type: "tween", ease: "easeOut" }}
     >
-      <div className="overflow-hidden px-[10vw] py-11">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 lg:grid-cols-1 md:gap-0">
+      <Container.Root className="overflow-hidden py-11">
+        <Container.Content className="grid grid-cols-1 gap-0 md:gap-10 lg:grid-cols-2">
           <motion.div
-            className="pt-16 lg:order-1 lg:py-0"
+            className="relative aspect-[4/3] w-full lg:order-1"
+            initial={{ opacity: 0, scale: 1.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
+            <Image
+              src={lele}
+              fill
+              style={{ objectFit: "contain" }}
+              alt="lele icon"
+            />
+          </motion.div>
+
+          <motion.div
+            className="py-0 lg:pt-16"
             variants={variant}
             initial="initial"
             animate="animate"
           >
             <motion.p
-              className="text-4xl leading-snug md:text-3xl"
+              className="text-3xl leading-snug md:text-4xl"
               variants={textVariant}
             >
               Mencegah peternak merugi melalui aplikasi pakar berkualitas
@@ -40,22 +54,8 @@ export default function Jumbotron() {
               Mulai Konsultasi
             </motion.button>
           </motion.div>
-          <div className="">
-            <motion.div
-              className="relative aspect-[4/3] w-full"
-              initial={{ opacity: 0, scale: 1.3 }}
-              animate={{ opacity: 1, scale: 1 }}
-            >
-              <Image
-                src={lele}
-                fill
-                style={{ objectFit: "contain" }}
-                alt="lele icon"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </div>
+        </Container.Content>
+      </Container.Root>
     </MotionConfig>
   );
 }
