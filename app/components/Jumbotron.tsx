@@ -17,7 +17,7 @@ export default function Jumbotron() {
     <MotionConfig
       transition={{ duration: 0.4, type: "tween", ease: "easeOut" }}
     >
-      <div className="overflow-x-hidden px-[10vw] py-11">
+      <div className="overflow-hidden px-[10vw] py-11">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-10 lg:grid-cols-1 md:gap-0">
           <motion.div
             className="pt-16 lg:order-1 lg:py-0"
