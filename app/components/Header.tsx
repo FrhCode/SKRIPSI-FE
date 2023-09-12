@@ -37,7 +37,7 @@ export default function Header() {
 
           <motion.button
             ref={toogleButtonMiniNavRef}
-            className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3 transition hover:bg-slate-900 focus:border-slate-900 lg:hidden"
+            className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3 transition hover:border-slate-900 focus:border-slate-900 lg:hidden"
             onClick={(e) => toggleIsNavOpen()}
             // whileHover={{ borderColor: "var(--slate-900)" }}
           >
