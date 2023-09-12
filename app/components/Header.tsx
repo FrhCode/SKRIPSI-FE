@@ -37,12 +37,9 @@ export default function Header() {
 
           <motion.button
             ref={toogleButtonMiniNavRef}
-            className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3 transition focus:border-slate-900 lg:hidden"
+            className="flex items-center justify-center rounded-full border-2 border-slate-200 p-3 transition hover:bg-slate-900 focus:border-slate-900 lg:hidden"
             onClick={(e) => toggleIsNavOpen()}
-            whileHover={{ borderColor: "var(--slate-900)" }}
-            whileFocus={{ outlineColor: "var(--slate-900)" }}
-            role="button"
-            tabIndex={0}
+            // whileHover={{ borderColor: "var(--slate-900)" }}
           >
             <HamburgerSvg className="h-7" />
           </motion.button>
