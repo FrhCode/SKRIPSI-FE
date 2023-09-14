@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   name: z.string().min(3, "nama minimal terdiri dari 3 karakter"),
@@ -47,8 +48,8 @@ export default function ConsultationForm() {
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-5 gap-4">
-              <div className="col-span-2 space-y-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-5">
+              <div className="space-y-1 md:col-span-2 md:space-y-2">
                 <p className="font-medium">Informasi pengguna</p>
                 <p className="text-slate-400">
                   Data yang anda masukan akan terjamin keamanannya, ini akan
@@ -56,23 +57,63 @@ export default function ConsultationForm() {
                   Dokter Lele
                 </p>
               </div>
-              <div className="col-span-3">
+              <div className="md:col-span-3">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem className="mb-10">
                       <div className="mb-3 flex justify-between">
-                        <FormLabel className="text-lg font-normal leading-6 text-slate-500">
-                          Nama
-                        </FormLabel>
+                        <FormLabel className="">Nama</FormLabel>
                         <FormMessage className="leading-6" />
                       </div>
                       <FormControl>
                         <Input
                           placeholder=""
                           {...field}
-                          className="focus-ring text-md w-full rounded-lg px-11 py-8 font-medium text-black placeholder-slate-500 disabled:text-slate-400"
+                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-slate-400"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => (
+                    <FormItem className="mb-10">
+                      <div className="mb-3 flex justify-between">
+                        <FormLabel className="">Nomor Telepon</FormLabel>
+                        <FormMessage className="leading-6" />
+                      </div>
+                      <FormControl>
+                        <Input
+                          placeholder="contoh: 083477284677"
+                          {...field}
+                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-slate-400"
+                          inputMode="numeric"
+                          pattern="[0-9]+"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem className="mb-10">
+                      <div className="mb-3 flex justify-between">
+                        <FormLabel className="">Alamat</FormLabel>
+                        <FormMessage className="leading-6" />
+                      </div>
+                      <FormControl>
+                        <Textarea
+                          rows={10}
+                          {...field}
+                          className="w-full rounded-lg px-4 py-4 text-black placeholder-slate-500 disabled:text-slate-400"
                         />
                       </FormControl>
                     </FormItem>

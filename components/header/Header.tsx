@@ -19,16 +19,32 @@ export default function Header() {
     <div className="relative px-[5vw] py-11">
       <div className="mx-auto flex max-w-[95rem] items-center justify-between">
         <Link href={"/"}>
-          <p className="text-2xl font-medium tracking-wide">Dokter Lele</p>
+          <p className="text-2xl font-medium leading-4 tracking-wide">
+            Dokter Lele
+          </p>
         </Link>
         <ul className="hidden gap-9 font-medium text-slate-500 lg:flex">
-          <ListMenu>Blog</ListMenu>
-          <ListMenu>Courses</ListMenu>
-          <ListMenu>Discord</ListMenu>
-          <ListMenu>Chats</ListMenu>
-          <ListMenu>Calls</ListMenu>
-          <ListMenu>Workshops</ListMenu>
-          <ListMenu>About</ListMenu>
+          <ListMenu>
+            <p className="leading-4">Blog</p>
+          </ListMenu>
+          <ListMenu>
+            <p className="leading-4">Courses</p>
+          </ListMenu>
+          <ListMenu>
+            <p className="leading-4">Discord</p>
+          </ListMenu>
+          <ListMenu>
+            <p className="leading-4">Chats</p>
+          </ListMenu>
+          <ListMenu>
+            <p className="leading-4">Calls</p>
+          </ListMenu>
+          <ListMenu>
+            <p className="leading-4">Workshops</p>
+          </ListMenu>
+          <ListMenu>
+            <p className="leading-4">About</p>
+          </ListMenu>
         </ul>
         <div className="flex gap-4">
           <motion.button

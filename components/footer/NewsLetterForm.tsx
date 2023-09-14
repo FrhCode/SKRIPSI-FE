@@ -52,7 +52,7 @@ export default function NewsLetterForm() {
                 <Input
                   placeholder=""
                   {...field}
-                  className="focus-ring text-md w-full rounded-lg bg-slate-100 px-11 py-8 font-medium text-black placeholder-slate-500 disabled:text-slate-400 dark:bg-slate-800 dark:text-white dark:disabled:text-slate-500"
+                  className="w-full rounded-lg bg-slate-100 px-11 py-8 font-medium text-black placeholder-slate-500 disabled:text-slate-400 dark:bg-slate-800 dark:text-white dark:disabled:text-slate-500"
                 />
               </FormControl>
             </FormItem>
@@ -73,7 +73,7 @@ export default function NewsLetterForm() {
                 <Input
                   placeholder=""
                   {...field}
-                  className="focus-ring text-md w-full rounded-lg bg-slate-100 px-11 py-8 font-medium text-black placeholder-slate-500 disabled:text-slate-400 dark:bg-slate-800 dark:text-white dark:disabled:text-slate-500"
+                  className="w-full rounded-lg bg-slate-100 px-11 py-8 font-medium text-black placeholder-slate-500 disabled:text-slate-400 dark:bg-slate-800 dark:text-white dark:disabled:text-slate-500"
                 />
               </FormControl>
             </FormItem>
