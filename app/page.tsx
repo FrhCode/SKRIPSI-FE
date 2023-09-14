@@ -1,6 +1,7 @@
-import Container from "../components/Container";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Link from "next/link";
+import Container from "../components/container/Container";
+import Footer from "../components/footer/Footer";
+import Header from "../components/header/Header";
 import Jumbotron from "./components/Jumbotron";
 
 export default function Home() {
@@ -67,9 +68,11 @@ export default function Home() {
             </li>
           </ul>
           <div className="mt-8 flex justify-center">
-            <button className="rounded-full bg-black px-7 py-6 font-medium text-white transition active:scale-[97%] active:bg-slate-950">
-              Mulai Konsultasi
-            </button>
+            <Link href={"/consultation"}>
+              <button className="rounded-full bg-black px-7 py-6 font-medium text-white transition active:scale-[97%] active:bg-slate-950">
+                Mulai Konsultasi
+              </button>
+            </Link>
           </div>
         </Container.Content>
       </Container.Root>

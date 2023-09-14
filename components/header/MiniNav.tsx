@@ -1,7 +1,7 @@
-import SunSvg from "@/Components/SunSvg";
 import React, { RefObject, useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import useStore from "@/zustand/store";
+import SunSvg from "../SunSvg";
 
 let miniNavVariant: Variants = {
   open: {

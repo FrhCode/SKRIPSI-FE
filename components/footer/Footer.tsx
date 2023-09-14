@@ -1,10 +1,10 @@
-import Container from "../../components/Container";
+import Container from "../container/Container";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
 import { FaRss } from "react-icons/fa";
-import NewsLetterForm from "./Footer/NewsLetterForm";
-import ListMenu from "./Header/ListMenu";
+import NewsLetterForm from "./NewsLetterForm";
+import ListMenu from "../shared/ListMenu";
 
 export default function Footer() {
   return (

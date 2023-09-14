@@ -2,7 +2,7 @@ import Image from "next/image";
 import leleIcon from "@/public/image-260nw-2278720581.png";
 import { motion, Variants } from "framer-motion";
 import { useState } from "react";
-import ColoredBorderRadiusSvg from "@/Components/ColoredBorderRadiusSvg";
+import ColoredBorderRadiusSvg from "../ColoredBorderRadiusSvg";
 
 export default function AnimationButton() {
   const rotationVariants: Variants = {

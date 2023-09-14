@@ -2,7 +2,8 @@
 import lele from "@/public/lele jumbotron.png";
 import Image from "next/image";
 import { MotionConfig, Variants, motion } from "framer-motion";
-import Container from "../../components/Container";
+import Container from "../../components/container/Container";
+import Link from "next/link";
 
 const variant: Variants = {
   initial: {},
@@ -45,14 +46,16 @@ export default function Jumbotron() {
             >
               Mencegah peternak merugi melalui aplikasi pakar berkualitas
             </motion.p>
-            <motion.button
-              className="mt-14 rounded-full bg-black px-7 py-6 font-medium text-white lg:mt-7"
-              variants={textVariant}
-              whileTap={{ scale: 0.97, backgroundColor: "var(--slate-950)" }}
-              transition={{ duration: 0.1 }}
-            >
-              Mulai Konsultasi
-            </motion.button>
+            <Link href={"/consultation"}>
+              <motion.button
+                className="mt-14 rounded-full bg-black px-7 py-6 font-medium text-white lg:mt-7"
+                variants={textVariant}
+                whileTap={{ scale: 0.97, backgroundColor: "var(--slate-950)" }}
+                transition={{ duration: 0.1 }}
+              >
+                Mulai Konsultasi
+              </motion.button>
+            </Link>
           </motion.div>
         </Container.Content>
       </Container.Root>

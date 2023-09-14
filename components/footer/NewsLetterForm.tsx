@@ -18,7 +18,7 @@ import { BsArrowRight } from "react-icons/bs";
 
 const formSchema = z.object({
   name: z.string().min(3, {
-    message: "name minimal terdiri dari 3 karakter",
+    message: "nama minimal terdiri dari 3 karakter",
   }),
   email: z.string().email({ message: "email tidak valid" }),
 });
@@ -26,10 +26,6 @@ const formSchema = z.object({
 export default function NewsLetterForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-    },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {

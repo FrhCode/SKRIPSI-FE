@@ -1,12 +1,13 @@
 "use client";
-import SunSvg from "@/Components/SunSvg";
 import { useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import HamburgerSvg from "@/Components/HamburgerSvg";
 import useStore from "@/zustand/store";
-import MiniNav from "./Header/MiniNav";
-import AnimationButton from "./Header/AnimationButton";
-import ListMenu from "./Header/ListMenu";
+import AnimationButton from "./AnimationButton";
+import ListMenu from "../shared/ListMenu";
+import MiniNav from "./MiniNav";
+import SunSvg from "../SunSvg";
+import HamburgerSvg from "../HamburgerSvg";
+import Link from "next/link";
 
 export default function Header() {
   const isNavOpen = useStore((state) => state.isNavOpen);
@@ -17,7 +18,9 @@ export default function Header() {
   return (
     <div className="relative px-[5vw] py-11">
       <div className="mx-auto flex max-w-[95rem] items-center justify-between">
-        <p className="text-2xl font-medium tracking-wide">Dokter Lele</p>
+        <Link href={"/"}>
+          <p className="text-2xl font-medium tracking-wide">Dokter Lele</p>
+        </Link>
         <ul className="hidden gap-9 font-medium text-slate-500 lg:flex">
           <ListMenu>Blog</ListMenu>
           <ListMenu>Courses</ListMenu>
