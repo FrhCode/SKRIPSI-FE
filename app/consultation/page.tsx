@@ -1,13 +1,16 @@
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
-import React from "react";
+import React, { useEffect } from "react";
 import ConsultationForm from "./components/ConsultationForm";
+import { getAllSymptoms } from "@/service/symtom/getAll";
 
-export default function page() {
+export default async function page() {
+  const symptoms = await getAllSymptoms();
+
   return (
     <>
       <Header />
-      <ConsultationForm />
+      <ConsultationForm symptoms={symptoms} />
       <div className="h-40 lg:h-48"></div>
       <Footer />
     </>

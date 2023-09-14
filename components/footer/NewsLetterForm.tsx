@@ -15,13 +15,7 @@ import { motion } from "framer-motion";
 
 import { Input } from "@/components/ui/input";
 import { BsArrowRight } from "react-icons/bs";
-
-const formSchema = z.object({
-  name: z.string().min(3, {
-    message: "nama minimal terdiri dari 3 karakter",
-  }),
-  email: z.string().email({ message: "email tidak valid" }),
-});
+import formSchema from "./schema/formSchema";
 
 export default function NewsLetterForm() {
   const form = useForm<z.infer<typeof formSchema>>({
