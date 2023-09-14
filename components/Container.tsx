@@ -12,9 +12,7 @@ function Root({ children, className }: Props) {
 
 function Content({ children, className }: Props) {
   return (
-    <div
-      className={twMerge("mx-auto max-w-7xl px-[min(10vw,165px)]", className)}
-    >
+    <div className={twMerge("mx-auto max-w-7xl px-[min(5vw,83px)]", className)}>
       {children}
     </div>
   );
