@@ -8,11 +8,11 @@ import ListMenu from "./Header/ListMenu";
 
 export default function Footer() {
   return (
-    <Container.Root className="border-t border-gray-200 pb-16 pt-48">
+    <Container.Root className="border-t border-slate-200 pb-16 pt-48">
       <Container.Content className="grid grid-cols-1 md:grid-cols-12 lg:gap-x-5">
         <div className="md:col-span-4">
           <p className="text-xl font-medium sm:text-2xl">Docker Lele</p>
-          <p className="mt-6 text-2xl leading-9 text-gray-400">
+          <p className="mt-6 text-2xl leading-9 text-slate-400">
             Aplikasi diagnosa penyakit ikan lele
           </p>
           <div className="mt-6 flex gap-4">
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
         <div className="mt-20 md:col-span-12 lg:col-span-6 lg:col-start-8 lg:row-start-1 lg:mt-0">
           <p className="text-lg font-medium sm:text-2xl">Tetap up to date</p>
-          <p className="mt-3 text-lg text-gray-400">
+          <p className="mt-3 text-lg text-slate-400">
             Berlangganan buletin untuk mendapatkan informasi terbaru tentang
             pembaharuan, informasi, dan banyak lagi!
           </p>
@@ -47,12 +47,12 @@ export default function Footer() {
         <div className="mt-20 md:col-span-3 md:col-start-5 md:row-start-1 md:mt-0">
           <p className="text-lg font-medium sm:text-2xl">Kontak</p>
           <ul className="mt-3 flex flex-col items-start gap-1">
-            <ListMenu className="text-gray-400 sm:text-lg">
+            <ListMenu className="text-slate-400 sm:text-lg">
               <Link href={"mailto:farhan7534031b@gmail.com"}>
                 Kirimkan Email
               </Link>
             </ListMenu>
-            <ListMenu className="text-gray-400 sm:text-lg">
+            <ListMenu className="text-slate-400 sm:text-lg">
               <Link href={"https://wa.me/6282188513499"} target="_blank">
                 Hubungi via Whatsapp
               </Link>
@@ -60,7 +60,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className="mt-24 text-gray-400 md:col-span-12 md:mt-44">
+        <div className="mt-24 text-slate-400 md:col-span-12 md:mt-44">
           <span>All rights reserved</span>{" "}
           <span className="block md:inline">© Dokter Lele 2023</span>
         </div>

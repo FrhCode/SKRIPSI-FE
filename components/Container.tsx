@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface Props {
   children: ReactNode;
@@ -7,12 +7,14 @@ export interface Props {
 }
 
 function Root({ children, className }: Props) {
-  return <div className={cn("", className)}>{children}</div>;
+  return <div className={twMerge("", className)}>{children}</div>;
 }
 
 function Content({ children, className }: Props) {
   return (
-    <div className={cn("mx-auto max-w-7xl px-[min(10vw,165px)]", className)}>
+    <div
+      className={twMerge("mx-auto max-w-7xl px-[min(10vw,165px)]", className)}
+    >
       {children}
     </div>
   );

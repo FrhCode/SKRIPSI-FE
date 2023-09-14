@@ -72,7 +72,7 @@ interface ListMenuMobileProps {
 function ListMenuMobile({ text }: ListMenuMobileProps) {
   return (
     <motion.li
-      whileHover={{ backgroundColor: "var(--gray-100)" }}
+      whileHover={{ backgroundColor: "var(--slate-100)" }}
       className="flex h-20 cursor-pointer items-center border-b bg-white px-10 text-sm first-of-type:border-t"
     >
       {text}
