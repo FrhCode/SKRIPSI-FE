@@ -12,7 +12,7 @@ function Root({ children, className }: Props) {
 
 function Content({ children, className }: Props) {
   return (
-    <div className={cn("mx-auto max-w-7xl px-[10vw]", className)}>
+    <div className={cn("mx-auto max-w-7xl px-[min(10vw,165px)]", className)}>
       {children}
     </div>
   );

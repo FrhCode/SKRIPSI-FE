@@ -14,6 +14,7 @@ import {
 import { motion } from "framer-motion";
 
 import { Input } from "@/components/ui/input";
+import { BsArrowRight } from "react-icons/bs";
 
 const formSchema = z.object({
   name: z.string().min(3, {
@@ -84,11 +85,16 @@ export default function NewsLetterForm() {
         />
 
         <motion.button
-          className="rounded-full bg-black px-7 py-6 font-medium text-white lg:mt-7"
-          whileTap={{ scale: 0.97, backgroundColor: "var(--slate-950)" }}
+          className="group flex items-center gap-6 lg:mt-7"
           transition={{ duration: 0.1 }}
         >
-          Daftarkan Saya
+          <p className="text-xl font-medium">Daftarkan Saya</p>
+          <div className="rounded-full border-2 border-slate-200 p-3 transition group-hover:border-black">
+            <BsArrowRight
+              size={30}
+              className="transition group-hover:translate-x-1"
+            />
+          </div>
         </motion.button>
       </form>
     </Form>
