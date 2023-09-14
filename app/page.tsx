@@ -8,7 +8,6 @@ export default function Home() {
     <>
       <Header />
       <Jumbotron />
-      <div className="h-10"></div>
       <Container.Root className="py-11">
         <Container.Content className="rounded-md bg-slate-100 py-16">
           <div className="grid w-full grid-cols-12 gap-4 lg:gap-8">

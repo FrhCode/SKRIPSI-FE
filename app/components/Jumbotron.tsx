@@ -18,7 +18,7 @@ export default function Jumbotron() {
     <MotionConfig
       transition={{ duration: 0.4, type: "tween", ease: "easeOut" }}
     >
-      <Container.Root className="overflow-hidden py-11">
+      <Container.Root className="flex h-[calc(100dvh-144px)] items-center overflow-hidden lg:h-[43.5rem]">
         <Container.Content className="grid grid-cols-1 gap-0 md:gap-10 lg:grid-cols-2">
           <motion.div
             className="relative aspect-[4/3] w-full lg:order-1"
@@ -40,7 +40,7 @@ export default function Jumbotron() {
             animate="animate"
           >
             <motion.p
-              className="text-3xl leading-snug md:text-4xl"
+              className="text-3xl md:text-4xl md:leading-[3.5rem]"
               variants={textVariant}
             >
               Mencegah peternak merugi melalui aplikasi pakar berkualitas
