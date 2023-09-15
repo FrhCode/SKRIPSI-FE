@@ -5,6 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getClass(className: string) {
-  return className;
+export type ArrayElement<A> = A extends readonly (infer T)[] ? T : never;
+
+export function containsSubstringIgnoreCase(
+  mainString: string,
+  subString: string
+) {
+  const regex = new RegExp(subString, "i");
+  return regex.test(mainString);
 }
