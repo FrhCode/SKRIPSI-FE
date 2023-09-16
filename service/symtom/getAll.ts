@@ -2,7 +2,7 @@ import Symptom from "@/types/Symptom";
 
 export async function getAllSymptoms(): Promise<Symptom[]> {
   const res: Response = await fetch(
-    process.env.API_URL + "/api/v1/symptom/all",
+    process.env.API_URL + "/api/v1/symptoms/all",
     { cache: "no-store" }
   );
 

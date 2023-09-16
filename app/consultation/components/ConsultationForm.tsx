@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import { ArrayElement, containsSubstringIgnoreCase } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 interface Props {
   symptoms: Symptom[];
@@ -34,6 +35,7 @@ export default function ConsultationForm({ symptoms }: Props) {
       return { ...symptom, show: true, checked: false };
     })
   );
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,6 +49,7 @@ export default function ConsultationForm({ symptoms }: Props) {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    router.push("result");
   }
 
   const handleSymtomClick = (symptom: ArrayElement<typeof filterdSymptoms>) => {
