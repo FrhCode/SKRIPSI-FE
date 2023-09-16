@@ -49,7 +49,7 @@ export default function SymptomCheckBox({
       onClick={onClick}
     >
       <div className="flex flex-col gap-2">
-        <span className="text-black">{name}</span>
+        <span>{name}</span>
         <span className="text-sm text-slate-400">{code}</span>
       </div>
       <div>
