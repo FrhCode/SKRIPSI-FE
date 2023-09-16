@@ -48,8 +48,8 @@ export default function SymptomCheckBox({
       className="flex cursor-pointer items-center justify-between gap-5 rounded-lg px-4 py-3 shadow-sm transition"
       onClick={onClick}
     >
-      <div className="flex flex-col">
-        <span>{name}</span>
+      <div className="flex flex-col gap-2">
+        <span className="text-black">{name}</span>
         <span className="text-sm text-slate-400">{code}</span>
       </div>
       <div>

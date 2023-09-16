@@ -60,17 +60,6 @@ export default function ConsultationForm({ symptoms }: Props) {
     setFilterdSymptoms(symtoms);
   };
 
-  useEffect(() => {
-    form.setValue(
-      "symtoms",
-      filterdSymptoms
-        .filter((symptom) => symptom.checked)
-        .map((symptom) => symptom.code)
-    );
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterdSymptoms]);
-
   return (
     <Container.Root>
       <Container.Content>
@@ -159,7 +148,12 @@ export default function ConsultationForm({ symptoms }: Props) {
                 render={() => (
                   <>
                     <div className="space-y-1 md:col-span-2 md:space-y-2">
-                      <FormLabel className="font-medium">Data gejala</FormLabel>
+                      <div>
+                        <FormLabel className="font-medium">
+                          Data gejala
+                        </FormLabel>
+                        <FormMessage />
+                      </div>
                       <p className="text-slate-400">
                         Centang gejala yang terlihat pada ikan lele anda, agar
                         sistem Dokter Lele dapat melakukan diagnosa penyakit
@@ -204,50 +198,45 @@ export default function ConsultationForm({ symptoms }: Props) {
                         {filterdSymptoms
                           .filter((symptom) => symptom.show)
                           .map((symptom) => (
-                            <div key={symptom.code}>
-                              <FormField
-                                control={form.control}
-                                name="symtoms"
-                                render={({ field }) => (
-                                  <SymptomCheckBox
-                                    symptom={symptom}
-                                    checked={symptom.checked}
-                                    onClick={() => {
-                                      handleSymtomClick(symptom);
-                                    }}
-                                  />
-                                )}
-                              />
-                              {/* <FormField
-                                control={form.control}
-                                name="symtoms"
-                                render={({ field }) => (
-                                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
-                                    <FormControl>
-                                      <Checkbox
-                                        checked={field.value.includes(
-                                          symptom.code
-                                        )}
-                                        onCheckedChange={(checked) => {
-                                          return checked
-                                            ? field.onChange([
-                                                ...field.value,
-                                                symptom.code,
-                                              ])
-                                            : field.onChange(
-                                                field.value?.filter(
-                                                  (value) =>
-                                                    value !== symptom.code
-                                                )
-                                              );
-                                        }}
-                                        value={symptom.code}
-                                      />
-                                    </FormControl>
-                                  </FormItem>
-                                )}
-                              /> */}
-                            </div>
+                            <FormField
+                              control={form.control}
+                              name="symtoms"
+                              key={symptom.code}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(
+                                        symptom.code
+                                      )}
+                                      onCheckedChange={(checked) => {
+                                        return checked
+                                          ? field.onChange([
+                                              ...field.value,
+                                              symptom.code,
+                                            ])
+                                          : field.onChange(
+                                              field.value?.filter(
+                                                (value) =>
+                                                  value !== symptom.code
+                                              )
+                                            );
+                                      }}
+                                      hidden
+                                    />
+                                  </FormControl>
+                                  <FormLabel>
+                                    <SymptomCheckBox
+                                      symptom={symptom}
+                                      checked={symptom.checked}
+                                      onClick={() => {
+                                        handleSymtomClick(symptom);
+                                      }}
+                                    />
+                                  </FormLabel>
+                                </FormItem>
+                              )}
+                            />
                           ))}
                       </div>
                     </div>
