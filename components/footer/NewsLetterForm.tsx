@@ -20,6 +20,10 @@ import formSchema from "./schema/formSchema";
 export default function NewsLetterForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+    },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {

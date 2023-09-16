@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,8 +19,10 @@ import formSchema from "./schema/formSchema";
 import Symptom from "@/types/Symptom";
 import { Button } from "@/components/ui/button";
 import SymptomCheckBox from "./SymptomCheckBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrayElement, containsSubstringIgnoreCase } from "@/lib/utils";
+import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "@/components/ui/use-toast";
 
 interface Props {
   symptoms: Symptom[];
@@ -28,12 +31,18 @@ interface Props {
 export default function ConsultationForm({ symptoms }: Props) {
   const [filterdSymptoms, setFilterdSymptoms] = useState(
     symptoms.map((symptom) => {
-      return { ...symptom, show: true, selected: false };
+      return { ...symptom, show: true, checked: false };
     })
   );
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "Mohammad Farhan",
+      phoneNumber: "082188513499",
+      address: "Jl Pelita",
+      symtoms: [],
+    },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -43,13 +52,25 @@ export default function ConsultationForm({ symptoms }: Props) {
   const handleSymtomClick = (symptom: ArrayElement<typeof filterdSymptoms>) => {
     const symtoms = filterdSymptoms.map((value) => {
       if (value.code === symptom.code) {
-        return { ...value, selected: !value.selected };
+        return { ...value, checked: !value.checked };
       }
       return { ...value };
     });
 
     setFilterdSymptoms(symtoms);
   };
+
+  useEffect(() => {
+    form.setValue(
+      "symtoms",
+      filterdSymptoms
+        .filter((symptom) => symptom.checked)
+        .map((symptom) => symptom.code)
+    );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterdSymptoms]);
+
   return (
     <Container.Root>
       <Container.Content>
@@ -132,65 +153,107 @@ export default function ConsultationForm({ symptoms }: Props) {
               </div>
             </div>
             <div className="grid grid-cols-1 gap-6 border-b border-slate-200 py-5 last:pb-0 last-of-type:border-none md:grid-cols-5">
-              <div className="space-y-1 md:col-span-2 md:space-y-2">
-                <p className="font-medium">Data gejala</p>
-                <p className="text-slate-400">
-                  Centang gejala yang terlihat pada ikan lele anda, agar sistem
-                  Dokter Lele dapat melakukan diagnosa penyakit terhadap gejala
-                  yang ikan anda alami
-                </p>
-              </div>
-              <div className="space-y-4 md:col-span-5">
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  <Input
-                    type="text"
-                    placeholder="Search"
-                    className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-slate-400"
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                      const symtoms = filterdSymptoms.map((symtom) => {
-                        const inputContainSymtomCode =
-                          containsSubstringIgnoreCase(
-                            symtom.code,
-                            e.target.value
-                          );
-                        const inputContainSymtomName =
-                          containsSubstringIgnoreCase(
-                            symtom.name,
-                            e.target.value
-                          );
-                        console.log({
-                          code: symtom.code,
-                          name: symtom.name,
-                          inputContainSymtomCode,
-                          inputContainSymtomName,
-                          input: e.target.value,
-                        });
+              <FormField
+                control={form.control}
+                name="symtoms"
+                render={() => (
+                  <>
+                    <div className="space-y-1 md:col-span-2 md:space-y-2">
+                      <FormLabel className="font-medium">Data gejala</FormLabel>
+                      <p className="text-slate-400">
+                        Centang gejala yang terlihat pada ikan lele anda, agar
+                        sistem Dokter Lele dapat melakukan diagnosa penyakit
+                        terhadap gejala yang ikan anda alami
+                      </p>
+                    </div>
+                    <div className="space-y-4 md:col-span-5">
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                        <Input
+                          type="text"
+                          placeholder="Search"
+                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-slate-400"
+                          onChange={(e) => {
+                            console.log(e.target.value);
+                            const symtoms = filterdSymptoms.map((symtom) => {
+                              const inputContainSymtomCode =
+                                containsSubstringIgnoreCase(
+                                  symtom.code,
+                                  e.target.value
+                                );
+                              const inputContainSymtomName =
+                                containsSubstringIgnoreCase(
+                                  symtom.name,
+                                  e.target.value
+                                );
 
-                        if (inputContainSymtomCode || inputContainSymtomName) {
-                          return { ...symtom, show: true };
-                        }
+                              if (
+                                inputContainSymtomCode ||
+                                inputContainSymtomName
+                              ) {
+                                return { ...symtom, show: true };
+                              }
 
-                        return { ...symtom, show: false };
-                      });
+                              return { ...symtom, show: false };
+                            });
 
-                      setFilterdSymptoms(symtoms);
-                    }}
-                  />
-                </div>
-                <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  {filterdSymptoms
-                    .filter((symptom) => symptom.show)
-                    .map((symptom) => (
-                      <SymptomCheckBox
-                        symptom={symptom}
-                        selected={symptom.selected}
-                        key={symptom.code}
-                        onClick={() => handleSymtomClick(symptom)}
-                      />
-                    ))}
-                </div>
-              </div>
+                            setFilterdSymptoms(symtoms);
+                          }}
+                        />
+                      </div>
+                      <div className="grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                        {filterdSymptoms
+                          .filter((symptom) => symptom.show)
+                          .map((symptom) => (
+                            <div key={symptom.code}>
+                              <FormField
+                                control={form.control}
+                                name="symtoms"
+                                render={({ field }) => (
+                                  <SymptomCheckBox
+                                    symptom={symptom}
+                                    checked={symptom.checked}
+                                    onClick={() => {
+                                      handleSymtomClick(symptom);
+                                    }}
+                                  />
+                                )}
+                              />
+                              {/* <FormField
+                                control={form.control}
+                                name="symtoms"
+                                render={({ field }) => (
+                                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow">
+                                    <FormControl>
+                                      <Checkbox
+                                        checked={field.value.includes(
+                                          symptom.code
+                                        )}
+                                        onCheckedChange={(checked) => {
+                                          return checked
+                                            ? field.onChange([
+                                                ...field.value,
+                                                symptom.code,
+                                              ])
+                                            : field.onChange(
+                                                field.value?.filter(
+                                                  (value) =>
+                                                    value !== symptom.code
+                                                )
+                                              );
+                                        }}
+                                        value={symptom.code}
+                                      />
+                                    </FormControl>
+                                  </FormItem>
+                                )}
+                              /> */}
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              />
             </div>
 
             <Button className="mt-14 rounded-full bg-black px-7 py-6 font-medium text-white lg:mt-7">

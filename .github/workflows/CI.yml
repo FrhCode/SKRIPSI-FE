@@ -18,7 +18,7 @@ jobs:
           script: |
             cd /var/www/pakar.farhandev.cloud
             git pull origin main
-            docker rm -f skripsi-fe
             docker build -t skripsi-fe:latest .
+            docker rm -f skripsi-fe
             docker run -d --name skripsi-fe -p 3002:3000 skripsi-fe:latest
             docker images | grep '<none>' | awk '{print $3}' | xargs docker rmi -f

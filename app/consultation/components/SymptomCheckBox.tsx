@@ -3,7 +3,7 @@ import { Variants, motion } from "framer-motion";
 
 interface Props {
   symptom: Symptom;
-  selected?: boolean;
+  checked?: boolean;
   onClick: () => void;
 }
 
@@ -35,10 +35,10 @@ const dotVariant: Variants = {
 
 export default function SymptomCheckBox({
   symptom: { name, code },
-  selected,
+  checked,
   onClick,
 }: Props) {
-  const state = selected ? "active" : "inActive";
+  const state = checked ? "active" : "inActive";
 
   return (
     <motion.div
