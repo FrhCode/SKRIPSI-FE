@@ -193,7 +193,9 @@ export default function ConsultationForm({ symptoms }: Props) {
               </div>
             </div>
 
-            <Button size={"lg"}>Sumit</Button>
+            <Button className="mt-14 rounded-full bg-black px-7 py-6 font-medium text-white lg:mt-7">
+              Sumit
+            </Button>
           </form>
         </Form>
       </Container.Content>
