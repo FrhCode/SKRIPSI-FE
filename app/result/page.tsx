@@ -31,7 +31,7 @@ export default async function page() {
             </div>
             <div className="space-y-1 border-b border-gray-200 py-5 last:pb-0 last-of-type:border-none">
               <p>Solusi</p>
-              <Accordion type="single" collapsible>
+              <Accordion type="multiple">
                 {solutions.map(({ description, name }, index) => (
                   <AccordionItem value={name} key={index}>
                     <AccordionTrigger>{name}</AccordionTrigger>
