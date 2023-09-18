@@ -1,13 +1,10 @@
 import Link from "next/link";
-import Container from "../components/container/Container";
-import Footer from "../components/footer/Footer";
-import Header from "../components/header/Header";
+import Container from "../../components/container/Container";
 import Jumbotron from "./components/Jumbotron";
 
 export default function Home() {
   return (
     <>
-      <Header />
       <Jumbotron />
       <Container.Root className="py-11">
         <Container.Content className="rounded-md bg-slate-100 py-16">
@@ -76,8 +73,6 @@ export default function Home() {
           </div>
         </Container.Content>
       </Container.Root>
-      <div className="h-40 lg:h-48"></div>
-      <Footer />
     </>
   );
 }

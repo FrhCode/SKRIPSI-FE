@@ -1,6 +1,4 @@
 import Container from "@/components/container/Container";
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
 import {
   Accordion,
   AccordionContent,
@@ -18,7 +16,6 @@ export default async function page() {
 
   return (
     <>
-      <Header />
       <Container.Root>
         <Container.Content>
           <p className="border-b border-gray-200 pb-5 text-3xl font-light">
@@ -43,8 +40,6 @@ export default async function page() {
           </div>
         </Container.Content>
       </Container.Root>
-      <div className="h-40 lg:h-48"></div>
-      <Footer />
     </>
   );
 }

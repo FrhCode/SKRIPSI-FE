@@ -2,8 +2,8 @@
 import lele from "@/public/lele jumbotron.png";
 import Image from "next/image";
 import { MotionConfig, Variants, motion } from "framer-motion";
-import Container from "../../components/container/Container";
 import Link from "next/link";
+import Container from "@/components/container/Container";
 
 const variant: Variants = {
   initial: {},

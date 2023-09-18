@@ -62,7 +62,9 @@ export default function Header() {
           >
             <HamburgerSvg className="h-7" />
           </motion.button>
-          <AnimationButton />
+          <Link href={"/login"}>
+            <AnimationButton />
+          </Link>
         </div>
       </div>
       <AnimatePresence>

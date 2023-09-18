@@ -10,7 +10,7 @@ const formSchema = z.object({
     .min(5, "kolom nomor telepon minimal terdiri dari 5 karakter")
     .max(15, "kolom nomor telepon maximal terdiri dari 15 karakter"),
   address: z
-    .string({ required_error: "kolom alamant wajib diisi" })
+    .string({ required_error: "kolom a wajib diisi" })
     .min(5, "kolom alamat minimal terdiri dari 5 karakter")
     .max(100, "kolom alamat maximal terdiri dari 100 karakter"),
   symtoms: z.array(z.string()).refine((value) => value.some((item) => item), {
