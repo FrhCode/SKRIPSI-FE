@@ -15,7 +15,7 @@ export default function Home() {
             <p className="col-span-12 text-3xl leading-normal sm:text-4xl sm:leading-relaxed lg:col-span-6">
               Kesulitan mengenali penyakit pada ikan lele anda?
             </p>
-            <p className="col-span-12 text-3xl leading-normal text-slate-400 sm:text-4xl sm:leading-relaxed lg:col-span-6">
+            <p className="col-span-12 text-3xl leading-normal text-gray-400 sm:text-4xl sm:leading-relaxed lg:col-span-6">
               Anda berada ditempat yang tepat. Dokter lele merupakan platform
               untuk menyelesaikan masalah anda.
             </p>
@@ -25,17 +25,17 @@ export default function Home() {
 
       <Container.Root>
         <Container.Content>
-          <p className="border-b border-dotted border-slate-400 pb-2 text-center text-2xl font-light leading-loose">
+          <p className="border-b border-dotted border-gray-400 pb-2 text-center text-2xl font-light leading-loose">
             Dengan 3 langkah mudah
           </p>
           <ul className="mt-5 flex flex-col gap-5 lg:mt-8 lg:flex-row">
             <li className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-slate-200 font-medium">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-200 font-medium">
                 1
               </div>
               <div className="flex flex-col gap-1">
                 <p className="">Memilih menu mulai konsultasi</p>
-                <p className="text-slate-400">
+                <p className="text-gray-400">
                   Memulai diagnosa pada aplikasi Dokter Lele sangatlah mudah dan
                   gratis
                 </p>
@@ -43,24 +43,24 @@ export default function Home() {
             </li>
 
             <li className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-slate-200 font-medium">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-200 font-medium">
                 2
               </div>
               <div className="flex flex-col gap-1">
                 <p className="">Mengisi form konsultasi</p>
-                <p className="text-slate-400">
+                <p className="text-gray-400">
                   Mulai isi form konsultasi, berdasarkan gejala yang anda lihat
                   pada ikan lele anda
                 </p>
               </div>
             </li>
             <li className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-slate-200 font-medium">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-200 font-medium">
                 3
               </div>
               <div className="flex flex-col gap-1">
                 <p className="">Mengunduh hasil konsultasi</p>
-                <p className="text-slate-400">
+                <p className="text-gray-400">
                   Setelah selesai mengisi form konsultasi, anda dapat melihat
                   hasil konsultasi, sekaligus mengunduh hasil konsultasi
                 </p>

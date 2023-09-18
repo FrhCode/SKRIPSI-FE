@@ -50,7 +50,7 @@ export default function SymptomCheckBox({
     >
       <div className="flex flex-col gap-2">
         <span>{name}</span>
-        <span className="text-sm text-slate-400">{code}</span>
+        <span className="text-sm text-gray-400">{code}</span>
       </div>
       <div>
         <motion.div

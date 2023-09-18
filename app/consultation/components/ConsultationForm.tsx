@@ -66,15 +66,15 @@ export default function ConsultationForm({ symptoms }: Props) {
   return (
     <Container.Root>
       <Container.Content>
-        <p className="border-b border-slate-200 pb-5 text-3xl font-light">
+        <p className="border-b border-gray-200 pb-5 text-3xl font-light">
           Formulir Konsultasi
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-            <div className="grid grid-cols-1 gap-6 border-b border-slate-200 py-5 last:pb-0 last-of-type:border-none md:grid-cols-5">
+            <div className="grid grid-cols-1 gap-6 border-b border-gray-200 py-5 last:pb-0 last-of-type:border-none md:grid-cols-5">
               <div className="space-y-1 md:col-span-2 md:space-y-2">
                 <p className="font-medium">Informasi pengguna</p>
-                <p className="text-slate-400">
+                <p className="text-gray-400">
                   Data yang anda masukan akan terjamin keamanannya, ini akan
                   digunakan dalam pengumpulan informasi, demi kemajuan sistem
                   Dokter Lele
@@ -94,7 +94,7 @@ export default function ConsultationForm({ symptoms }: Props) {
                         <Input
                           placeholder=""
                           {...field}
-                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-slate-400"
+                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-gray-400"
                         />
                       </FormControl>
                     </FormItem>
@@ -114,7 +114,7 @@ export default function ConsultationForm({ symptoms }: Props) {
                         <Input
                           placeholder="contoh: 083477284677"
                           {...field}
-                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-slate-400"
+                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-gray-400"
                           inputMode="numeric"
                           pattern="[0-9]+"
                         />
@@ -136,7 +136,7 @@ export default function ConsultationForm({ symptoms }: Props) {
                         <Textarea
                           rows={10}
                           {...field}
-                          className="w-full rounded-lg px-4 py-4 text-black placeholder-slate-500 disabled:text-slate-400"
+                          className="w-full rounded-lg px-4 py-4 text-black placeholder-slate-500 disabled:text-gray-400"
                         />
                       </FormControl>
                     </FormItem>
@@ -144,7 +144,7 @@ export default function ConsultationForm({ symptoms }: Props) {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 border-b border-slate-200 py-5 last:pb-0 last-of-type:border-none md:grid-cols-5">
+            <div className="grid grid-cols-1 gap-6 border-b border-gray-200 py-5 last:pb-0 last-of-type:border-none md:grid-cols-5">
               <FormField
                 control={form.control}
                 name="symtoms"
@@ -157,7 +157,7 @@ export default function ConsultationForm({ symptoms }: Props) {
                         </FormLabel>
                         <FormMessage />
                       </div>
-                      <p className="text-slate-400">
+                      <p className="text-gray-400">
                         Centang gejala yang terlihat pada ikan lele anda, agar
                         sistem Dokter Lele dapat melakukan diagnosa penyakit
                         terhadap gejala yang ikan anda alami
@@ -168,7 +168,7 @@ export default function ConsultationForm({ symptoms }: Props) {
                         <Input
                           type="text"
                           placeholder="Search"
-                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-slate-400"
+                          className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-gray-400"
                           onChange={(e) => {
                             console.log(e.target.value);
                             const symtoms = filterdSymptoms.map((symtom) => {
