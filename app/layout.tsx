@@ -2,6 +2,7 @@ import clsx from "clsx";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import Providers from "@/components/Providers";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -28,7 +29,7 @@ export default function RootLayout({
           "debug-screens": isDevelopment,
         })}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
