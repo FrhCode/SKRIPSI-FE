@@ -54,6 +54,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/signin",
   },
+  session: { maxAge: 86400000 },
 };
 
 const handler = NextAuth(authOptions);
