@@ -170,7 +170,6 @@ export default function ConsultationForm({ symptoms }: Props) {
                           placeholder="Search"
                           className="w-full rounded-lg px-4 py-8 text-black placeholder-slate-500 disabled:text-gray-400"
                           onChange={(e) => {
-                            console.log(e.target.value);
                             const symtoms = filterdSymptoms.map((symtom) => {
                               const inputContainSymtomCode =
                                 containsSubstringIgnoreCase(

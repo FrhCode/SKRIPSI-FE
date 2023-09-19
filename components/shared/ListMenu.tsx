@@ -3,12 +3,12 @@ import { cn } from "@/lib/utils";
 import { motion, MotionConfig } from "framer-motion";
 import { ReactNode, useState } from "react";
 
-interface ListMenuProps {
+interface Props {
   children: ReactNode;
   className?: string;
 }
 
-export default function ListMenu({ children, className }: ListMenuProps) {
+export default function ListMenu({ children, className }: Props) {
   const [isHovering, setIsHovering] = useState(false);
 
   return (

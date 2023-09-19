@@ -3,8 +3,17 @@ import LoginForm from "./components/LoginForm";
 import leleIcon from "@/public/image-260nw-2278720581.png";
 import Image from "next/image";
 import Header from "@/components/header/Header";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
-export default function page() {
+export default async function page() {
+  const data = await getServerSession(authOptions);
+
+  if (data) {
+    redirect("/dashboard");
+  }
+
   return (
     <>
       <Header />

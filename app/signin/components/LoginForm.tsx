@@ -34,7 +34,6 @@ export default function LoginForm() {
     signIn("credentials", {
       email: values.email,
       password: values.password,
-      redirect: true,
       callbackUrl: callbackUrl || "/dashboard",
     });
   }

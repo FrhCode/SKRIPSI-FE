@@ -12,7 +12,6 @@ export default async function page() {
 
   const dieses = invoiceData.dieses[0];
   const solutions = dieses.solutions;
-  console.log(invoiceData);
 
   return (
     <>

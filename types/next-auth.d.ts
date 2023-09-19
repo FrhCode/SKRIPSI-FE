@@ -6,6 +6,7 @@ interface AuthResponse {
     username: string;
     email: string;
     phoneNumber: string;
+    profileImage: string;
     roles: Role[];
     authorities: any[]; // You can replace 'any' with the actual type if you have more information about this field
     accountNonExpired: boolean;
