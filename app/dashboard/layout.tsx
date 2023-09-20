@@ -1,8 +1,22 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { Card, CardContent } from "@/components/ui/card";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { AiOutlineDashboard, AiOutlineInbox } from "react-icons/ai";
+import { BsWindowDock } from "react-icons/bs";
+import { BiCubeAlt, BiDetail } from "react-icons/bi";
+import LogOutComponent from "@/components/shared/LogOutComponent";
+import { CgLogOut } from "react-icons/cg";
+import { headers } from "next/headers";
+import { cn } from "@/lib/utils";
+import clsx from "clsx";
+import Link from "next/link";
+import Menu from "./components/Menu";
+import MiniNav from "./components/MiniNav";
 
-export default async function DashboardLayout({
+export default async function DashBoardLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -11,5 +25,93 @@ export default async function DashboardLayout({
   if (!data) {
     redirect("/signin");
   }
-  return <>{children}</>;
+
+  const headersList = headers();
+  const path = headersList.get("x-url") || "";
+  const { pathname } = new URL(path);
+
+  console.log(pathname);
+
+  const menus: Array<{
+    id: string;
+    content: string | JSX.Element;
+    pathname: string;
+    icon: JSX.Element;
+  }> = [
+    {
+      id: "Dashboard",
+      content: "Dashboard",
+      pathname: "/dashboard",
+      icon: <AiOutlineDashboard />,
+    },
+    {
+      id: "Penyakit",
+      content: "Penyakit",
+      pathname: "/dashboard/diese",
+      icon: <AiOutlineInbox />,
+    },
+    {
+      id: "Gejala",
+      content: "Gejala",
+      pathname: "/a",
+      icon: <BsWindowDock />,
+    },
+    {
+      id: "Basis Pengetahuan",
+      content: "Basis Pengetahuan",
+      pathname: "/a",
+      icon: <BiCubeAlt />,
+    },
+    {
+      id: "Hasil Konsultasi",
+      content: "Hasil Konsultasi",
+      pathname: "/a",
+      icon: <BiDetail />,
+    },
+    {
+      id: "Logout",
+      content: <LogOutComponent>Logout</LogOutComponent>,
+      pathname: "/a",
+      icon: <CgLogOut />,
+    },
+  ];
+
+  return (
+    <div className="flex h-screen">
+      <div className="hidden w-60 flex-shrink-0 py-4 shadow lg:block">
+        <div className="flex h-14 items-center px-4 text-2xl font-black text-blue-600">
+          Dokter Lele
+        </div>
+        <ul className="flex flex-col gap-4">
+          <Menu menus={menus} />
+        </ul>
+      </div>
+      <div className="max-h-[100dvh] flex-grow overflow-auto p-4 pb-20">
+        <div className="mx-auto grid max-w-[1120px] grid-cols-1 content-start gap-4">
+          <Card className="rounded shadow-sm">
+            <CardContent className="flex h-14 items-center py-0">
+              <Sheet>
+                <SheetTrigger className="lg:hidden">
+                  <div>
+                    <GiHamburgerMenu color="var(--blue-600)" size={23} />
+                  </div>
+                </SheetTrigger>
+                <SheetContent side={"left"}>
+                  <div className="mb-5"></div>
+                  <ul className="space-y-5">
+                    <MiniNav menus={menus} />
+                  </ul>
+                </SheetContent>
+              </Sheet>
+              <span className="hidden text-lg font-semibold lg:block">
+                Dashboard
+              </span>
+            </CardContent>
+          </Card>
+
+          {children}
+        </div>
+      </div>
+    </div>
+  );
 }
