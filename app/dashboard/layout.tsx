@@ -37,6 +37,7 @@ export default async function DashBoardLayout({
     content: string | JSX.Element;
     pathname: string;
     icon: JSX.Element;
+    isNotLink?: boolean;
   }> = [
     {
       id: "Dashboard",
@@ -73,6 +74,7 @@ export default async function DashBoardLayout({
       content: <LogOutComponent>Logout</LogOutComponent>,
       pathname: "/a",
       icon: <CgLogOut />,
+      isNotLink: true,
     },
   ];
 

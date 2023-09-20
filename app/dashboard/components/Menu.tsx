@@ -11,6 +11,7 @@ interface Props {
     content: string | JSX.Element;
     pathname: string;
     icon: JSX.Element;
+    isNotLink?: boolean;
   }>;
 }
 
@@ -18,9 +19,21 @@ export default function Menu({ menus }: Props) {
   const pathName = usePathname();
   return (
     <>
-      {menus.map(({ content, icon, id, pathname: menuPathName }) => {
+      {menus.map(({ content, icon, id, pathname: menuPathName, isNotLink }) => {
         const isActive = pathName === menuPathName;
-        return (
+        return isNotLink ? (
+          <li className="px-4" key={id}>
+            <span
+              className={cn(
+                "flex cursor-pointer items-center gap-2 rounded p-2 transition hover:bg-blue-600 hover:text-white",
+                clsx({ "bg-blue-600": isActive, " text-white": isActive })
+              )}
+            >
+              {icon}
+              {content}
+            </span>
+          </li>
+        ) : (
           <Link key={id} href={menuPathName}>
             <li className="px-4">
               <span
