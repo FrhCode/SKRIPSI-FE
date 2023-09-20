@@ -93,11 +93,13 @@ export default async function Page() {
         </div>
         <ul className="flex flex-col gap-4">
           {menus.map(({ content, icon, id, pathname: menuPathName }) => {
+            const isActive = pathname === menuPathName;
             return (
               <li key={id} className="px-4">
                 <span
                   className={cn(
-                    "flex items-center gap-2 rounded bg-blue-600 p-2 text-white"
+                    "flex cursor-pointer items-center gap-2 rounded p-2 transition hover:bg-blue-600 hover:text-white",
+                    clsx({ "bg-blue-600": isActive, " text-white": isActive })
                   )}
                 >
                   {icon}
@@ -110,10 +112,10 @@ export default async function Page() {
       </div>
       <div className="max-h-[100dvh] flex-grow overflow-auto p-4 pb-20">
         <div className="mx-auto grid max-w-[1120px] grid-cols-1 content-start gap-4">
-          <Card className="rounded">
+          <Card className="rounded shadow-sm lg:hidden">
             <CardContent className="flex h-14 items-center py-0">
               <Sheet>
-                <SheetTrigger className="lg:hidden">
+                <SheetTrigger className="">
                   <div>
                     <GiHamburgerMenu color="var(--blue-600)" size={23} />
                   </div>
@@ -144,7 +146,7 @@ export default async function Page() {
             </CardContent>
           </Card>
 
-          <Card className="rounded">
+          <Card className="rounded shadow-sm">
             <CardHeader>
               <CardTitle>
                 Selamat datang <span className="text-blue-600">admin</span>
@@ -162,7 +164,7 @@ export default async function Page() {
           </Card>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="rounded">
+            <Card className="rounded shadow-sm">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-sm font-medium">
                   <span>Jumlah Penyakit</span>
@@ -174,7 +176,7 @@ export default async function Page() {
               </CardContent>
             </Card>
 
-            <Card className="rounded">
+            <Card className="rounded shadow-sm">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-sm font-medium">
                   <span>Jumlah Gejala</span>
@@ -186,7 +188,7 @@ export default async function Page() {
               </CardContent>
             </Card>
 
-            <Card className="rounded">
+            <Card className="rounded shadow-sm">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-sm font-medium">
                   <span>Total hasil diagnosa</span>
@@ -198,7 +200,7 @@ export default async function Page() {
               </CardContent>
             </Card>
           </div>
-          <Card className="rounded">
+          <Card className="rounded shadow-sm">
             <CardHeader>
               <CardTitle className="font-semibold">
                 <span>Hasil diagnosa terbaru</span>
