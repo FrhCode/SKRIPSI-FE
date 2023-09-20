@@ -16,12 +16,13 @@ interface Symptom {
   dsValue: number;
 }
 
-interface InvoiceData {
+interface Consultation {
   id: number;
   invoice: string;
   patientName: string;
   invoiceDate: string;
   dieses: Disease[];
-  symtoms: Symptom[];
+  symptoms: Symptom[];
 }
-export default InvoiceData;
+
+export default Consultation;
