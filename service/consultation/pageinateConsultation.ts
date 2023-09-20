@@ -14,7 +14,7 @@ export async function pageinateConsultation({
   token,
   size,
   sortBy = "invoiceDate",
-  sortDirection = "ASC",
+  sortDirection = "DESC",
 }: Props) {
   const params = new URLSearchParams({
     size: `${size}`,
