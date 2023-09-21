@@ -41,14 +41,15 @@ export default async function Page() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <span className="flex items-center gap-2">
-                  <BsInfoCircleFill color="var(--blue-600)" /> info
-                </span>
+                <div className="flex items-center gap-2">
+                  <BsInfoCircleFill color="var(--blue-600)" />{" "}
+                  <p className="font-semibold">info</p>
+                </div>
                 <p>{description}</p>
               </div>
 
               <Table>
-                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableCaption>List gejala dari penyakit {name}</TableCaption>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Code</TableHead>
