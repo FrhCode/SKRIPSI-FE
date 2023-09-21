@@ -10,9 +10,6 @@ import { BiCubeAlt, BiDetail } from "react-icons/bi";
 import LogOutComponent from "@/components/shared/LogOutComponent";
 import { CgLogOut } from "react-icons/cg";
 import { headers } from "next/headers";
-import { cn } from "@/lib/utils";
-import clsx from "clsx";
-import Link from "next/link";
 import Menu from "./components/Menu";
 import MiniNav from "./components/MiniNav";
 

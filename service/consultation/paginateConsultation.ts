@@ -1,16 +1,14 @@
 import Page from "@/types/Page";
 import { fetcher } from "../fetcher";
 import Consultation from "@/types/Consultation";
-import SortDirection from "@/types/SortDirection";
+import { PaginateSearchParams } from "@/types/PaginateSearchParams";
 
-interface Props {
-  token: string;
-  size: number;
-  sortBy?: keyof Omit<Consultation, "id" | "invoice" | "dieses" | "symptoms">;
-  sortDirection?: SortDirection;
-}
+interface Props
+  extends PaginateSearchParams<
+    keyof Omit<Consultation, "id" | "invoice" | "dieses" | "symptoms">
+  > {}
 
-export async function pageinateConsultation({
+export async function paginateConsultation({
   token,
   size,
   sortBy = "invoiceDate",

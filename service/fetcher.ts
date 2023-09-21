@@ -11,6 +11,8 @@ export async function fetcher<T>(
   const res: Response = await fetch(process.env.API_URL + url, fetchOption);
 
   if (!res.ok) {
+    console.log(res);
+
     throw new Error("Failed to fetch data");
   }
 

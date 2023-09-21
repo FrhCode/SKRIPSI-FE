@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import { Session, getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import { pageinateConsultation } from "@/service/consultation/pageinateConsultation";
 import {
   Table,
   TableBody,
@@ -20,12 +19,13 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
+import { paginateConsultation } from "@/service/consultation/paginateConsultation";
 
 export default async function Page() {
-  const data = (await getServerSession(authOptions)) as Session;
+  const { jwtToken } = (await getServerSession(authOptions)) as Session;
 
-  const consultationPaginate = await pageinateConsultation({
-    token: data.jwtToken,
+  const consultationPaginate = await paginateConsultation({
+    token: jwtToken,
     size: 10,
   });
 
