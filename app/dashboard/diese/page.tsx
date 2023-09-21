@@ -1,14 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
   Table,
   TableBody,
   TableCaption,
@@ -22,7 +14,7 @@ import { paginateDiese } from "@/service/diese/paginateDiese";
 import { Session, getServerSession } from "next-auth";
 import React from "react";
 import { BsInfoCircleFill } from "react-icons/bs";
-import { AddSymtomForm } from "./components/schema/AddSymtomForm";
+import DialogAddSymptom from "./components/DialogAddSymptom";
 
 export default async function Page() {
   const { jwtToken } = (await getServerSession(authOptions)) as Session;
@@ -59,22 +51,7 @@ export default async function Page() {
 
               <Table>
                 <TableCaption>
-                  <Dialog>
-                    <DialogTrigger>
-                      Tambah gejala untuk penyakit {name}
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Form menambahkan gejala</DialogTitle>
-                        <DialogDescription>
-                          Aksi ini akan menambahkan gejala terhadap penyakit,
-                          Aksi ini dapat mempengaruhi hasil perhitungan dari
-                          sistem.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <AddSymtomForm />
-                    </DialogContent>
-                  </Dialog>
+                  <DialogAddSymptom symptomName={name} />
                 </TableCaption>
                 <TableHeader>
                   <TableRow>

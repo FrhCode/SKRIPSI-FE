@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,10 +18,9 @@ import formSchema from "./schema/formSchema";
 import Symptom from "@/types/Symptom";
 import { Button } from "@/components/ui/button";
 import SymptomCheckBox from "./SymptomCheckBox";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrayElement, containsSubstringIgnoreCase } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
-import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
 interface Props {

@@ -8,7 +8,10 @@ export async function fetcher<T>(
         cache: "no-store",
       } as RequestInit);
 
-  const res: Response = await fetch(process.env.API_URL + url, fetchOption);
+  const res: Response = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + url,
+    fetchOption
+  );
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
