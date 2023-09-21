@@ -14,9 +14,13 @@ import { paginateSymtom } from "@/service/symptom/paginateSymptom";
 
 interface Props {
   symptomName: string;
+  dieseCode: string;
 }
 
-export default async function DialogAddSymptom({ symptomName }: Props) {
+export default async function DialogAddSymptom({
+  symptomName,
+  dieseCode,
+}: Props) {
   const { jwtToken } = (await getServerSession(authOptions)) as Session;
 
   const page = await paginateSymtom({ token: jwtToken, size: 50 });
@@ -39,6 +43,7 @@ export default async function DialogAddSymptom({ symptomName }: Props) {
             label: symptom.name,
             value: symptom.code,
           }))}
+          dieseCode={dieseCode}
         />
       </DialogContent>
     </Dialog>

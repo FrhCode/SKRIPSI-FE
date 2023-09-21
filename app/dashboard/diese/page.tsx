@@ -32,7 +32,7 @@ export default async function Page() {
 
   return (
     <div className="space-y-4">
-      {dieses.map(({ id, description, name, symptoms }) => {
+      {dieses.map(({ id, description, name, symptoms, code }) => {
         return (
           <Card className="rounded shadow-sm" key={id}>
             <CardHeader>
@@ -51,7 +51,7 @@ export default async function Page() {
 
               <Table>
                 <TableCaption>
-                  <DialogAddSymptom symptomName={name} />
+                  <DialogAddSymptom symptomName={name} dieseCode={code} />
                 </TableCaption>
                 <TableHeader>
                   <TableRow>

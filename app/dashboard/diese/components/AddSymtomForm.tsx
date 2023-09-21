@@ -13,7 +13,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { toast } from "@/components/ui/use-toast";
 import FormSchema from "./schema/formSchema";
 import {
   Select,
@@ -22,26 +21,38 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useSession } from "next-auth/react";
+import addSymptoms from "@/service/diese/addSymptoms";
+import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/use-toast";
 
 interface Props {
   symptoms: Array<{ label: string; value: string }>;
+  dieseCode: string;
 }
 
-export function AddSymtomForm({ symptoms }: Props) {
+export function AddSymtomForm({ symptoms, dieseCode }: Props) {
+  const { data: session } = useSession();
+  const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
+    await addSymptoms({
+      dieseCode,
+      symptomsCode: [data.symptomCode],
+      token: session!.jwtToken,
+    });
+    router.refresh();
+    console.log("FINISH");
 
+    // ".fixed.inset-0.z-50.bg-background\\/80.backdrop-blur-sm[data-state=open].animate-in[data-state=closed].animate-out[data-state=closed].fade-out-0[data-state=open].fade-in-0"
     toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
+      title: "Scheduled: Catch up",
+      description: "Friday, February 10, 2023 at 5:57 PM",
     });
   }
 
@@ -56,18 +67,20 @@ export function AddSymtomForm({ symptoms }: Props) {
               <FormLabel>Email</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger className="text-left [&>span:first-child]:line-clamp-1">
                     <SelectValue placeholder="Select a verified email to display" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {symptoms.map(({ label, value }) => {
-                    return (
-                      <SelectItem key={value} value={value}>
-                        {label}
-                      </SelectItem>
-                    );
-                  })}
+                  <ScrollArea className="h-[200px] rounded-md">
+                    {symptoms.map(({ label, value }) => {
+                      return (
+                        <SelectItem key={value} value={value}>
+                          {label}
+                        </SelectItem>
+                      );
+                    })}
+                  </ScrollArea>
                 </SelectContent>
               </Select>
               <FormMessage />
