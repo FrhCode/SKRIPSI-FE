@@ -11,6 +11,7 @@ import { AddSymtomForm } from "./AddSymtomForm";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Session, getServerSession } from "next-auth";
 import { paginateSymtom } from "@/service/symptom/paginateSymptom";
+import Temp from "./Temp";
 
 interface Props {
   symptomName: string;
@@ -45,6 +46,7 @@ export default async function DialogAddSymptom({
           }))}
           dieseCode={dieseCode}
         />
+				<Temp id={dieseCode}/>
       </DialogContent>
     </Dialog>
   );
