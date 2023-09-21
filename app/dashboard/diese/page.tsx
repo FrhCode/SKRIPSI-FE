@@ -31,10 +31,49 @@ export default async function Page() {
 
   return (
     <div className="space-y-4">
-      {dieses.map(({ id }) => {
-        return <p key={id}>HI</p>;
+      {dieses.map(({ id, description, name, symptoms }) => {
+        return (
+          <Card className="rounded shadow-sm" key={id}>
+            <CardHeader>
+              <CardTitle className=" flex items-center justify-between text-2xl font-medium">
+                <span>{name}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <span className="flex items-center gap-2">
+                  <BsInfoCircleFill color="var(--blue-600)" /> info
+                </span>
+                <p>{description}</p>
+              </div>
+
+              <Table>
+                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Code</TableHead>
+                    <TableHead>Nama</TableHead>
+                    <TableHead className="text-right">
+                      Nilai Keyakinan
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {symptoms.map(({ code, dsValue, id, name }) => {
+                    return (
+                      <TableRow key={id}>
+                        <TableCell className="font-medium">{code}</TableCell>
+                        <TableCell>{name}</TableCell>
+                        <TableCell className="text-right">{dsValue}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        );
       })}
-      <pre>{JSON.stringify(dieses, null, 2)}</pre>
     </div>
   );
 }
