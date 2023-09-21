@@ -47,6 +47,8 @@ export function AddSymtomForm({ symptoms, dieseCode }: Props) {
       token: session!.jwtToken,
     });
 
+    router.refresh();
+
     console.log("FINISH");
     console.log();
 
