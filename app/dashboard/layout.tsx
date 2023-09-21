@@ -12,6 +12,7 @@ import { CgLogOut } from "react-icons/cg";
 import { headers } from "next/headers";
 import Menu from "./components/Menu";
 import MiniNav from "./components/MiniNav";
+import Link from "next/link";
 
 export default async function DashBoardLayout({
   children,
@@ -26,8 +27,6 @@ export default async function DashBoardLayout({
   const headersList = headers();
   const path = headersList.get("x-url") || "";
   const { pathname } = new URL(path);
-
-  console.log(pathname);
 
   const menus: Array<{
     id: string;
@@ -78,9 +77,11 @@ export default async function DashBoardLayout({
   return (
     <div className="flex h-screen">
       <div className="hidden w-60 flex-shrink-0 py-4 shadow lg:block">
-        <div className="flex h-14 items-center px-4 text-2xl font-black text-blue-600">
-          Dokter Lele
-        </div>
+        <Link href={"/"}>
+          <span className="flex h-14 items-center px-4 text-2xl font-black text-blue-600">
+            Dokter Lele
+          </span>
+        </Link>
         <ul className="flex flex-col gap-4">
           <Menu menus={menus} />
         </ul>
