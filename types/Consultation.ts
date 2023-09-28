@@ -1,13 +1,18 @@
-interface DiseaseSolution {
+export interface Solution {
   name: string;
   description: string;
 }
 
-interface Disease {
+export interface Disease {
+  code: string;
   name: string;
-  percentage: number;
   description: string;
-  solutions: DiseaseSolution[];
+  solutions: Solution[];
+}
+
+interface Result {
+  dieses: Disease[];
+  percentage: number;
 }
 
 interface Symptom {
@@ -16,13 +21,31 @@ interface Symptom {
   dsValue: number;
 }
 
+interface Known {
+  diese: string;
+  belief: string;
+}
+
+interface ReportData {
+  dieses: string[] | null;
+  value: string | null;
+}
+
+interface Report {
+  name: string;
+  calculationData: ReportData[][];
+  knowns: Known[];
+  mcombinationList: string[];
+}
+
 interface Consultation {
   id: number;
   invoice: string;
   patientName: string;
   invoiceDate: string;
-  dieses: Disease[];
+  results: Result[];
   symptoms: Symptom[];
+  report: Report;
 }
 
 export default Consultation;

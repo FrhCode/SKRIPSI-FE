@@ -45,6 +45,8 @@ export const authOptions: NextAuthOptions = {
     },
 
     async session({ token, session }) {
+      // console.log({ session, token });
+
       session.userDetail = token.user;
       session.jwtToken = token.jwtToken;
       session.user = {
@@ -52,13 +54,19 @@ export const authOptions: NextAuthOptions = {
         email: token.user.email,
         image: token.user.profileImage,
       };
+      // session.expires = new Date()
+      //   .setMinutes(new Date().getMinutes() + 3)
+      //   .toString();
+
+      // session.expires = session.te;
+
       return session;
     },
   },
   pages: {
     signIn: "/signin",
   },
-  session: { maxAge: 86400000 },
+  session: { maxAge: 86400000, strategy: "jwt" },
 };
 
 const handler = NextAuth(authOptions);

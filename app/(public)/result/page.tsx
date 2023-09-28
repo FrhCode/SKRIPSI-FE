@@ -6,12 +6,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { getOneConsultation } from "@/service/consultation/getOneConsultation";
+import ResulData from "./components/ResulData";
 
 export default async function page() {
   const invoiceData = await getOneConsultation();
 
-  const dieses = invoiceData.dieses[0];
-  const solutions = dieses.solutions;
+  console.log(invoiceData);
+
+  const dieses = invoiceData.results[0].dieses;
 
   return (
     <>
@@ -20,22 +22,16 @@ export default async function page() {
           <p className="border-b border-gray-200 pb-5 text-3xl font-light">
             Hasil Diagnosa
           </p>
-          <div className="space-y-3">
-            <div className="space-y-1 border-b border-gray-200 py-5 last:pb-0 last-of-type:border-none">
-              <p>{dieses.name}</p>
-              <p className="text-gray-400">{dieses.description}</p>
-            </div>
-            <div className="space-y-1 border-b border-gray-200 py-5 last:pb-0 last-of-type:border-none">
-              <p>Solusi</p>
-              <Accordion type="multiple">
-                {solutions.map(({ description, name }, index) => (
-                  <AccordionItem value={name} key={index}>
-                    <AccordionTrigger>{name}</AccordionTrigger>
-                    <AccordionContent>{description}</AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+          <div className="space-y-5">
+            {dieses.map((diese) => {
+              return (
+                <ResulData
+                  disease={diese}
+                  key={diese.code}
+                  solutions={diese.solutions}
+                />
+              );
+            })}
           </div>
         </Container.Content>
       </Container.Root>

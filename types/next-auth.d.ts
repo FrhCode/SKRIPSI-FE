@@ -8,7 +8,10 @@ interface AuthResponse {
     email: string;
     phoneNumber: string;
     profileImage: string;
-    roles: Role[];
+    roles: Array<{
+      id: number;
+      name: string;
+    }>;
     authorities: any[]; // You can replace 'any' with the actual type if you have more information about this field
     accountNonExpired: boolean;
     accountNonLocked: boolean;
@@ -16,11 +19,7 @@ interface AuthResponse {
     enabled: boolean;
   };
   jwtToken: string;
-}
-
-interface Role {
-  id: number;
-  name: string;
+  tes: string;
 }
 
 declare module "next-auth" {

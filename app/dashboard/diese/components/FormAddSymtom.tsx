@@ -32,7 +32,7 @@ interface Props {
   dieseCode: string;
 }
 
-export function AddSymtomForm({ symptoms, dieseCode }: Props) {
+export function FormAddSymtom({ symptoms, dieseCode }: Props) {
   const { data: session } = useSession();
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -53,10 +53,10 @@ export function AddSymtomForm({ symptoms, dieseCode }: Props) {
     console.log();
 
     const el = document.querySelector(
-      `[data-dialog-id="${dieseCode}"]`
-    ) as HTMLDivElement;
+      `[data-close-modal]`
+    ) as HTMLButtonElement;
 
-    el.querySelector("button")!.click();
+    el.click();
 
     // ".fixed.inset-0.z-50.bg-background\\/80.backdrop-blur-sm[data-state=open].animate-in[data-state=closed].animate-out[data-state=closed].fade-out-0[data-state=open].fade-in-0"
     toast({

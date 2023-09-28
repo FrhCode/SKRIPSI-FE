@@ -22,7 +22,12 @@ import { format } from "date-fns";
 import { paginateConsultation } from "@/service/consultation/paginateConsultation";
 
 export default async function Page() {
-  const { jwtToken } = (await getServerSession(authOptions)) as Session;
+  const { jwtToken, expires, user } = (await getServerSession(
+    authOptions
+  )) as Session;
+
+  // console.log("expires: " + expires);
+  // console.log(user);
 
   const consultationPaginate = await paginateConsultation({
     token: jwtToken,

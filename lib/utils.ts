@@ -14,3 +14,10 @@ export function containsSubstringIgnoreCase(
   const regex = new RegExp(subString, "i");
   return regex.test(mainString);
 }
+
+export type ExtractData<T extends (...args: any) => Promise<{ data: any }>> =
+  T extends (...args: any) => Promise<{
+    data: infer R;
+  }>
+    ? R
+    : any;

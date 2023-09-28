@@ -1,5 +1,11 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -15,6 +21,10 @@ import { Session, getServerSession } from "next-auth";
 import React from "react";
 import { BsInfoCircleFill } from "react-icons/bs";
 import DialogAddSymptom from "./components/DialogAddSymptom";
+import SymtomTable from "./components/TableSymtom";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getDieseSolutions } from "@/service/diese/getDieseSolution";
+import SolutionTable from "./components/TableSolution";
 
 export default async function Page() {
   const { jwtToken } = (await getServerSession(authOptions)) as Session;
@@ -25,19 +35,20 @@ export default async function Page() {
 
   const diesePromises = content.map(async (diese) => {
     const { data: symptoms } = await getDieseSymptoms(jwtToken, diese.code);
-    return { ...diese, symptoms };
+    const { data: solutions } = await getDieseSolutions(jwtToken, diese.code);
+    return { ...diese, symptoms, solutions };
   });
 
   const dieses = await Promise.all(diesePromises);
 
   return (
     <div className="space-y-4">
-      {dieses.map(({ id, description, name, symptoms, code }) => {
+      {dieses.map((diese) => {
         return (
-          <Card className="rounded shadow-sm" key={id}>
+          <Card className="rounded shadow-sm" key={diese.code}>
             <CardHeader>
               <CardTitle className=" flex items-center justify-between text-2xl font-medium">
-                <span>{name}</span>
+                <span>{diese.name}</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -46,34 +57,21 @@ export default async function Page() {
                   <BsInfoCircleFill color="var(--blue-600)" />{" "}
                   <p className="font-semibold">info</p>
                 </div>
-                <p>{description}</p>
+                <p>{diese.description}</p>
               </div>
 
-              <Table>
-                <TableCaption>
-                  <DialogAddSymptom symptomName={name} dieseCode={code} />
-                </TableCaption>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Code</TableHead>
-                    <TableHead>Nama</TableHead>
-                    <TableHead className="text-right">
-                      Nilai Keyakinan
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {symptoms.map(({ code, dsValue, id, name }) => {
-                    return (
-                      <TableRow key={id}>
-                        <TableCell className="font-medium">{code}</TableCell>
-                        <TableCell>{name}</TableCell>
-                        <TableCell className="text-right">{dsValue}</TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
+              <Tabs defaultValue="Gejala" className="">
+                <TabsList className="grid w-full grid-cols-2 sm:w-48">
+                  <TabsTrigger value="Gejala">Gejala</TabsTrigger>
+                  <TabsTrigger value="Solusi">Solusi</TabsTrigger>
+                </TabsList>
+                <TabsContent value="Gejala">
+                  <SymtomTable diese={diese} />
+                </TabsContent>
+                <TabsContent value="Solusi">
+                  <SolutionTable diese={diese} />
+                </TabsContent>
+              </Tabs>
             </CardContent>
           </Card>
         );

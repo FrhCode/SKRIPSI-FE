@@ -20,7 +20,7 @@ interface Props {
   dieseCode: string;
 }
 
-export default async function DialogAddSymptom({
+export default async function DialogAddSolution({
   symptomName,
   dieseCode,
 }: Props) {
@@ -32,7 +32,7 @@ export default async function DialogAddSymptom({
 
   return (
     <Dialog>
-      <DialogTrigger>Tambah gejala untuk penyakit {symptomName}</DialogTrigger>
+      <DialogTrigger>Tambah Solusi untuk penyakit {symptomName}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Form menambahkan gejala</DialogTitle>
