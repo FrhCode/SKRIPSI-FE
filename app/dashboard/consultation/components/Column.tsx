@@ -1,0 +1,63 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Consultation from "@/types/Consultation";
+import Symptom from "@/types/Symptom";
+import { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
+import { MoreHorizontalIcon } from "lucide-react";
+
+export const columns: ColumnDef<Consultation>[] = [
+  {
+    id: "nomor",
+    header: "No",
+
+    cell: ({ row }) => {
+      const staticNumber = row.index + 1;
+      return <>{staticNumber}</>;
+    },
+  },
+  {
+    id: "tanggal konsultasi",
+    accessorKey: "invoiceDate",
+    header: "Tanggal konsultasi",
+    cell: ({ row }) => {
+      const consultation = row.original;
+      const formattedDate = format(
+        new Date(consultation.invoiceDate),
+        "yyyy-MM-dd HH:mm:ss"
+      );
+
+      return <>{formattedDate}</>;
+    },
+  },
+  {
+    id: "nama pasien",
+    accessorKey: "patientName",
+    header: "Nama pasien",
+  },
+  {
+    id: "aksi",
+    cell: ({ row }) => {
+      const consultation = row.original;
+      return (
+        <div className="text-right">
+          <Button variant={"dashboard"} size={"sm"} asChild>
+            <a
+              href={`${process.env.NEXT_PUBLIC_API_URL}/api/v1/consultations/${consultation.invoice}/download`}
+            >
+              Download
+            </a>
+          </Button>
+        </div>
+      );
+    },
+  },
+];

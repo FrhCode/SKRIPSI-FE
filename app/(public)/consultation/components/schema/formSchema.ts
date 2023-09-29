@@ -13,8 +13,8 @@ const formSchema = z.object({
     .string({ required_error: "kolom a wajib diisi" })
     .min(5, "kolom alamat minimal terdiri dari 5 karakter")
     .max(100, "kolom alamat maximal terdiri dari 100 karakter"),
-  symtoms: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "Harap centang setidaknya satu gejala",
+  symptoms: z.array(z.string()).refine((value) => value.length >= 2, {
+    message: "Harap centang setidaknya dua gejala",
   }),
 });
 

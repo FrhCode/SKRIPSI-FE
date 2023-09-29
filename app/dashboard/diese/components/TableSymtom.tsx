@@ -11,15 +11,24 @@ import React from "react";
 import DialogAddSymptom from "./DialogAddSymptom";
 import Symptom from "@/types/Symptom";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
-import { ExtractData } from "@/lib/utils";
 import { BsFillTrashFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import { Button } from "@/components/ui/button";
+import { ExtractContentType } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MoreHorizontalIcon } from "lucide-react";
 
 interface Props {
   diese: {
     symptoms: Symptom[];
-    solutions: ExtractData<typeof getDieseSolutions>;
+    solutions: ExtractContentType<typeof getDieseSolutions>;
     id: number;
     code: string;
     name: string;
@@ -49,12 +58,19 @@ export default function TableSymtom({ diese }: Props) {
               <TableCell>{name}</TableCell>
               <TableCell className="">{dsValue}</TableCell>
               <TableCell className="flex items-end gap-3 text-right">
-                <button>
-                  <AiFillEdit size={19} />
-                </button>
-                <button>
-                  <BsFillTrashFill size={21} color="var(--rose-700)" />
-                </button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="h-8 w-8 p-0">
+                      <span className="sr-only">Open menu</span>
+                      <MoreHorizontalIcon className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <DropdownMenuItem>Hapus</DropdownMenuItem>
+                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </TableCell>
             </TableRow>
           );

@@ -34,12 +34,17 @@ export default async function Page() {
   const { content } = page;
 
   const diesePromises = content.map(async (diese) => {
-    const { data: symptoms } = await getDieseSymptoms(jwtToken, diese.code);
-    const { data: solutions } = await getDieseSolutions(jwtToken, diese.code);
+    const { content: symptoms } = await getDieseSymptoms(jwtToken, diese.code);
+    const { content: solutions } = await getDieseSolutions(
+      jwtToken,
+      diese.code
+    );
     return { ...diese, symptoms, solutions };
   });
 
   const dieses = await Promise.all(diesePromises);
+
+  // console.log(dieses[0]);
 
   return (
     <div className="space-y-4">

@@ -15,9 +15,10 @@ export function containsSubstringIgnoreCase(
   return regex.test(mainString);
 }
 
-export type ExtractData<T extends (...args: any) => Promise<{ data: any }>> =
-  T extends (...args: any) => Promise<{
-    data: infer R;
-  }>
-    ? R
-    : any;
+export type ExtractContentType<
+  T extends (...args: any) => Promise<{ content: any }>
+> = T extends (...args: any) => Promise<{
+  content: infer R;
+}>
+  ? R
+  : any;

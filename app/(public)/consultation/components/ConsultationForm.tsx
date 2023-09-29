@@ -41,13 +41,24 @@ export default function ConsultationForm({ symptoms }: Props) {
       name: "Mohammad Farhan",
       phoneNumber: "082188513499",
       address: "Jl Pelita",
-      symtoms: [],
+      symptoms: [],
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    router.push("result");
+    const res: {
+      invoice: string;
+    } = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/v1/consultations", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+
+    console.log(res);
+    router.push(`/result/${res.invoice}`);
   }
 
   const handleSymtomClick = (symptom: ArrayElement<typeof filterdSymptoms>) => {
@@ -145,7 +156,7 @@ export default function ConsultationForm({ symptoms }: Props) {
             <div className="grid grid-cols-1 gap-6 border-b border-gray-200 py-5 last:pb-0 last-of-type:border-none md:grid-cols-5">
               <FormField
                 control={form.control}
-                name="symtoms"
+                name="symptoms"
                 render={() => (
                   <>
                     <div className="space-y-1 md:col-span-2 md:space-y-2">
@@ -200,7 +211,7 @@ export default function ConsultationForm({ symptoms }: Props) {
                           .map((symptom) => (
                             <FormField
                               control={form.control}
-                              name="symtoms"
+                              name="symptoms"
                               key={symptom.code}
                               render={({ field }) => (
                                 <FormItem>

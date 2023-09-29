@@ -13,6 +13,7 @@ import { headers } from "next/headers";
 import Menu from "./components/Menu";
 import MiniNav from "./components/MiniNav";
 import Link from "next/link";
+import { FaRegUserCircle } from "react-icons/fa";
 
 export default async function DashBoardLayout({
   children,
@@ -50,20 +51,20 @@ export default async function DashBoardLayout({
     {
       id: "Gejala",
       content: "Gejala",
-      pathname: "/a",
+      pathname: "/dashboard/symptom",
       icon: <BsWindowDock />,
-    },
-    {
-      id: "Basis Pengetahuan",
-      content: "Basis Pengetahuan",
-      pathname: "/a",
-      icon: <BiCubeAlt />,
     },
     {
       id: "Hasil Konsultasi",
       content: "Hasil Konsultasi",
-      pathname: "/a",
+      pathname: "/dashboard/consultation",
       icon: <BiDetail />,
+    },
+    {
+      id: "Kelola Akun",
+      content: "Kelola Akun",
+      pathname: "/dashboard/user",
+      icon: <FaRegUserCircle />,
     },
     {
       id: "Logout",

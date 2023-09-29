@@ -120,8 +120,12 @@ export default async function Page() {
                     </TableCell>
                     <TableCell>{row.patientName}</TableCell>
                     <TableCell className="text-right">
-                      <Button variant={"dashboard"} size={"sm"}>
-                        Download
+                      <Button variant={"dashboard"} size={"sm"} asChild>
+                        <a
+                          href={`${process.env.NEXT_PUBLIC_API_URL}/api/v1/consultations/${row.invoice}/download`}
+                        >
+                          Download
+                        </a>
                       </Button>
                     </TableCell>
                   </TableRow>
