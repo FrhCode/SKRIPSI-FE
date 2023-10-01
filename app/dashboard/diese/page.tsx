@@ -1,26 +1,10 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getDieseSymptoms } from "@/service/diese/getDieseSymptoms";
 import { paginateDiese } from "@/service/diese/paginateDiese";
-import { Session, getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import React from "react";
 import { BsInfoCircleFill } from "react-icons/bs";
-import DialogAddSymptom from "./components/DialogAddSymptom";
 import SymtomTable from "./components/TableSymtom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
@@ -51,7 +35,7 @@ export default async function Page() {
   // console.log(dieses[0]);
 
   return (
-    <div className="space-y-4">
+    <>
       {dieses.map((diese) => {
         return (
           <Card className="rounded shadow-sm" key={diese.code}>
@@ -85,6 +69,6 @@ export default async function Page() {
           </Card>
         );
       })}
-    </div>
+    </>
   );
 }

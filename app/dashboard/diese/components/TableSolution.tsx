@@ -8,11 +8,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import React from "react";
-import DialogAddSymptom from "./DialogAddSymptom";
 import Symptom from "@/types/Symptom";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
 import DialogAddSolution from "./DialogAddSolution";
-import { BsFillTrashFill } from "react-icons/bs";
 import { ExtractContentType } from "@/lib/utils";
 import {
   DropdownMenu,

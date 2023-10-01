@@ -20,9 +20,9 @@ export default function Jumbotron() {
       transition={{ duration: 0.4, type: "tween", ease: "easeOut" }}
     >
       <Container.Root className="flex h-[calc(100dvh-144px)] items-center overflow-hidden lg:h-[calc(100dvh-144px-120px)]">
-        <Container.Content className="grid grid-cols-1 gap-0 md:gap-10 lg:grid-cols-2">
+        <Container.Content className="flex h-full flex-col gap-0 md:gap-10 lg:flex-row">
           <motion.div
-            className="relative aspect-[4/3] w-full lg:order-1"
+            className="relative h-2/4 w-full lg:order-1 lg:h-full"
             initial={{ opacity: 0, scale: 1.3 }}
             animate={{ opacity: 1, scale: 1 }}
           >
@@ -33,9 +33,8 @@ export default function Jumbotron() {
               alt="lele icon"
             />
           </motion.div>
-
           <motion.div
-            className="py-0 lg:pt-16"
+            className="h-2/4 py-0 lg:h-full lg:pt-16"
             variants={variant}
             initial="initial"
             animate="animate"

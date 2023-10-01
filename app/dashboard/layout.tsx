@@ -1,34 +1,42 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
+"use client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineDashboard, AiOutlineInbox } from "react-icons/ai";
 import { BsWindowDock } from "react-icons/bs";
-import { BiCubeAlt, BiDetail } from "react-icons/bi";
+import { BiDetail } from "react-icons/bi";
 import LogOutComponent from "@/components/shared/LogOutComponent";
 import { CgLogOut } from "react-icons/cg";
-import { headers } from "next/headers";
 import Menu from "./components/Menu";
 import MiniNav from "./components/MiniNav";
 import Link from "next/link";
 import { FaRegUserCircle } from "react-icons/fa";
 import InvalidSessionException from "@/exception/InvalidSessionException";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
-export default async function DashBoardLayout({
+export default function DashBoardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-  if (!session) {
+  const session = useSession();
+
+  if (session.status === "unauthenticated") {
     throw new InvalidSessionException();
   }
 
-  const headersList = headers();
-  const path = headersList.get("x-url") || "";
-  const { pathname } = new URL(path);
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  // const headersList = headers();
+  // const path = headersList.get("x-url") || "";
+  // const { pathname } = new URL(path);
 
   const menus: Array<{
     id: string;
@@ -77,8 +85,8 @@ export default async function DashBoardLayout({
   ];
 
   return (
-    <div className="flex h-screen">
-      <div className="hidden w-60 flex-shrink-0 py-4 shadow lg:block">
+    <div className="flex h-[100dvh]">
+      <div className="hidden h-full w-60 flex-shrink-0 py-4 shadow lg:block">
         <Link href={"/"}>
           <span className="flex h-14 items-center px-4 text-2xl font-black text-blue-600">
             Dokter Lele
@@ -88,7 +96,7 @@ export default async function DashBoardLayout({
           <Menu menus={menus} />
         </ul>
       </div>
-      <div className="max-h-[100dvh] flex-grow overflow-auto p-4 pb-20">
+      <div className="h-full flex-grow overflow-y-auto p-4 pb-20">
         <div className="mx-auto grid max-w-[1120px] grid-cols-1 content-start gap-4">
           <Card className="rounded shadow-sm">
             <CardContent className="flex h-14 items-center py-0">
