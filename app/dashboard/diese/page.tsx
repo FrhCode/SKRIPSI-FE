@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getDieseSymptoms } from "@/service/diese/getDieseSymptoms";
 import { paginateDiese } from "@/service/diese/paginateDiese";
 import { getServerSession } from "next-auth";

@@ -11,7 +11,7 @@ import React from "react";
 import DialogAddSymptom from "./DialogAddSymptom";
 import Symptom from "@/types/Symptom";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import { ExtractContentType } from "@/lib/utils";
 import {
   DropdownMenu,

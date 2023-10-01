@@ -1,11 +1,11 @@
 "use client";
-import { Card, CardContent } from "@/Components/ui/card";
-import { Sheet, SheetContent, SheetTrigger } from "@/Components/ui/sheet";
+import { Card, CardContent } from "@/components/ui/card";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineDashboard, AiOutlineInbox } from "react-icons/ai";
 import { BsWindowDock } from "react-icons/bs";
 import { BiDetail } from "react-icons/bi";
-import LogOutComponent from "@/Components/shared/LogOutComponent";
+import LogOutComponent from "@/components/shared/LogOutComponent";
 import { CgLogOut } from "react-icons/cg";
 import Menu from "./components/Menu";
 import MiniNav from "./components/MiniNav";
@@ -21,7 +21,8 @@ export default function DashBoardLayout({
   children: React.ReactNode;
 }) {
   const session = useSession();
-  if (!session) {
+
+  if (session.status === "unauthenticated") {
     throw new InvalidSessionException();
   }
 

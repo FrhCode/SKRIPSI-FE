@@ -33,7 +33,6 @@ export default function Jumbotron() {
               alt="lele icon"
             />
           </motion.div>
-
           <motion.div
             className="h-2/4 py-0 lg:h-full lg:pt-16"
             variants={variant}
