@@ -11,9 +11,9 @@ import Menu from "./components/Menu";
 import MiniNav from "./components/MiniNav";
 import Link from "next/link";
 import { FaRegUserCircle } from "react-icons/fa";
-import InvalidSessionException from "@/exception/InvalidSessionException";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function DashBoardLayout({
   children,
@@ -21,10 +21,7 @@ export default function DashBoardLayout({
   children: React.ReactNode;
 }) {
   const session = useSession();
-
-  if (session.status === "unauthenticated") {
-    throw new InvalidSessionException();
-  }
+  const router = useRouter();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -33,6 +30,17 @@ export default function DashBoardLayout({
       document.body.style.overflow = "auto";
     };
   }, []);
+
+  if (session.status === "loading") {
+    // throw new InvalidSessionException();
+    // redirect("/signin");
+    return null;
+  }
+
+  if (session.status === "unauthenticated") {
+    router.replace("/signin");
+    return null;
+  }
 
   // const headersList = headers();
   // const path = headersList.get("x-url") || "";

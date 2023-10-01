@@ -7,5 +7,12 @@ interface Props {
 }
 
 export default function LogOutComponent({ children }: Props) {
-  return <button onClick={() => signOut()}>{children}</button>;
+  return (
+    <button
+      onClick={() => signOut({ callbackUrl: "/signin", redirect: true })}
+      className="h-full w-full text-left"
+    >
+      {children}
+    </button>
+  );
 }
