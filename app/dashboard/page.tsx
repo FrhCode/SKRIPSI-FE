@@ -20,11 +20,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { paginateConsultation } from "@/service/consultation/paginateConsultation";
+import InvalidSessionException from "@/exception/InvalidSessionException";
 
 export default async function Page() {
-  const { jwtToken, expires, user } = (await getServerSession(
-    authOptions
-  )) as Session;
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    throw new InvalidSessionException();
+  }
+  const { jwtToken } = session;
 
   // console.log("expires: " + expires);
   // console.log(user);

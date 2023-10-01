@@ -8,11 +8,14 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Consultation from "@/types/Consultation";
 import Symptom from "@/types/Symptom";
+import User from "@/types/User";
 import { ColumnDef } from "@tanstack/react-table";
+import { format } from "date-fns";
 import { MoreHorizontalIcon } from "lucide-react";
 
-export const columns: ColumnDef<Symptom>[] = [
+export const columns: ColumnDef<User>[] = [
   {
     id: "Nomor",
     header: "No",
@@ -23,19 +26,19 @@ export const columns: ColumnDef<Symptom>[] = [
     },
   },
   {
-    id: "Kode",
-    accessorKey: "code",
-    header: "Kode",
-  },
-  {
     id: "Nama",
     accessorKey: "name",
     header: "Nama",
   },
   {
-    id: "Keyakinan",
-    accessorKey: "dsValue",
-    header: "Keyakinan",
+    id: "Email",
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    id: "No Handphone",
+    accessorKey: "phoneNumber",
+    header: "No Handphone",
   },
   {
     id: "Aksi",

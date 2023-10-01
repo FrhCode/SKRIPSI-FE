@@ -14,15 +14,16 @@ import Menu from "./components/Menu";
 import MiniNav from "./components/MiniNav";
 import Link from "next/link";
 import { FaRegUserCircle } from "react-icons/fa";
+import InvalidSessionException from "@/exception/InvalidSessionException";
 
 export default async function DashBoardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const data = await getServerSession(authOptions);
-  if (!data) {
-    redirect("/signin");
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    throw new InvalidSessionException();
   }
 
   const headersList = headers();

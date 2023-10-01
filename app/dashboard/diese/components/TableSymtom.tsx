@@ -57,7 +57,7 @@ export default function TableSymtom({ diese }: Props) {
               <TableCell className="font-medium">{code}</TableCell>
               <TableCell>{name}</TableCell>
               <TableCell className="">{dsValue}</TableCell>
-              <TableCell className="flex items-end gap-3 text-right">
+              <TableCell className="flex justify-end">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="h-8 w-8 p-0">

@@ -19,7 +19,7 @@ export default function Jumbotron() {
     <MotionConfig
       transition={{ duration: 0.4, type: "tween", ease: "easeOut" }}
     >
-      <Container.Root className="flex h-[calc(100dvh-144px)] items-center overflow-hidden lg:h-[43.5rem]">
+      <Container.Root className="flex h-[calc(100dvh-144px)] items-center overflow-hidden lg:h-[calc(100dvh-144px-120px)]">
         <Container.Content className="grid grid-cols-1 gap-0 md:gap-10 lg:grid-cols-2">
           <motion.div
             className="relative aspect-[4/3] w-full lg:order-1"

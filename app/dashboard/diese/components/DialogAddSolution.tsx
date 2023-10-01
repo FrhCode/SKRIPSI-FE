@@ -14,6 +14,7 @@ import { Session, getServerSession } from "next-auth";
 import { paginateSymtom } from "@/service/symptom/paginateSymptom";
 import { Button } from "@/components/ui/button";
 import { FormAddSymtom } from "./FormAddSymtom";
+import InvalidSessionException from "@/exception/InvalidSessionException";
 
 interface Props {
   symptomName: string;
@@ -24,8 +25,11 @@ export default async function DialogAddSolution({
   symptomName,
   dieseCode,
 }: Props) {
-  const { jwtToken } = (await getServerSession(authOptions)) as Session;
-
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    throw new InvalidSessionException();
+  }
+  const { jwtToken } = session;
   const page = await paginateSymtom({ token: jwtToken, size: 50 });
 
   const { content: symptoms } = page;

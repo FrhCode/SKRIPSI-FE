@@ -25,10 +25,14 @@ import SymtomTable from "./components/TableSymtom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
 import SolutionTable from "./components/TableSolution";
+import InvalidSessionException from "@/exception/InvalidSessionException";
 
 export default async function Page() {
-  const { jwtToken } = (await getServerSession(authOptions)) as Session;
-
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    throw new InvalidSessionException();
+  }
+  const { jwtToken } = session;
   const page = await paginateDiese({ token: jwtToken, size: 50 });
 
   const { content } = page;

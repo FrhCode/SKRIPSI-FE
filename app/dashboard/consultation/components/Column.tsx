@@ -16,7 +16,7 @@ import { MoreHorizontalIcon } from "lucide-react";
 
 export const columns: ColumnDef<Consultation>[] = [
   {
-    id: "nomor",
+    id: "Nomor",
     header: "No",
 
     cell: ({ row }) => {
@@ -25,7 +25,7 @@ export const columns: ColumnDef<Consultation>[] = [
     },
   },
   {
-    id: "tanggal konsultasi",
+    id: "Tanggal Konsultasi",
     accessorKey: "invoiceDate",
     header: "Tanggal konsultasi",
     cell: ({ row }) => {
@@ -39,12 +39,12 @@ export const columns: ColumnDef<Consultation>[] = [
     },
   },
   {
-    id: "nama pasien",
+    id: "Nama pasien",
     accessorKey: "patientName",
     header: "Nama pasien",
   },
   {
-    id: "aksi",
+    id: "Aksi",
     cell: ({ row }) => {
       const consultation = row.original;
       return (
