@@ -25,25 +25,22 @@ export default function Header() {
         </Link>
         <ul className="hidden gap-9 font-medium text-slate-500 lg:flex">
           <ListMenu>
-            <p className="leading-4">Blog</p>
-          </ListMenu>
-          <ListMenu>
-            <p className="leading-4">Courses</p>
+            <p className="leading-4">Artikel</p>
           </ListMenu>
           <ListMenu>
             <p className="leading-4">Discord</p>
           </ListMenu>
           <ListMenu>
-            <p className="leading-4">Chats</p>
+            <p className="leading-4">Tentang</p>
           </ListMenu>
           <ListMenu>
-            <p className="leading-4">Calls</p>
+            <p className="leading-4">Statistik</p>
           </ListMenu>
           <ListMenu>
-            <p className="leading-4">Workshops</p>
+            <p className="leading-4">kontak</p>
           </ListMenu>
           <ListMenu>
-            <p className="leading-4">About</p>
+            <p className="leading-4">FAQ</p>
           </ListMenu>
         </ul>
         <div className="flex gap-4">

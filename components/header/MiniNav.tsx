@@ -42,13 +42,12 @@ export default function MiniNav({ toogleButtonRef }: miniNavProps) {
       transition={{ type: "tween", ease: "linear" }}
     >
       <ul>
-        <ListMenuMobile text="Blog" />
-        <ListMenuMobile text="Courses" />
+        <ListMenuMobile text="Artikel" />
         <ListMenuMobile text="Discord" />
-        <ListMenuMobile text="Chats" />
-        <ListMenuMobile text="Calls" />
-        <ListMenuMobile text="Workshops" />
-        <ListMenuMobile text="About" />
+        <ListMenuMobile text="Tentang" />
+        <ListMenuMobile text="Statistik" />
+        <ListMenuMobile text="Kontak" />
+        <ListMenuMobile text="FAQ" />
       </ul>
 
       <div className="flex h-36 items-center justify-center">
