@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/Components/ui/table";
+} from "@/components/ui/table";
 import React from "react";
 import DialogAddSymptom from "./DialogAddSymptom";
 import Symptom from "@/types/Symptom";
@@ -19,7 +19,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/Components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import { MoreHorizontalIcon } from "lucide-react";
 
 interface Props {

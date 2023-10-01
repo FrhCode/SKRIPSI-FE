@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import React from "react";
 import { BsInfoCircleFill } from "react-icons/bs";
 import SymtomTable from "./components/TableSymtom";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/Components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
 import SolutionTable from "./components/TableSolution";
 import InvalidSessionException from "@/exception/InvalidSessionException";
