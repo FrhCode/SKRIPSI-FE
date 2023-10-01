@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "@/Components/container/Container";
+import Container from "@/components/container/Container";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -11,16 +11,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/Components/ui/form";
-import { Input } from "@/Components/ui/input";
-import { Textarea } from "@/Components/ui/textarea";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import formSchema from "./schema/formSchema";
 import Symptom from "@/types/Symptom";
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import SymptomCheckBox from "./SymptomCheckBox";
 import { useState } from "react";
 import { ArrayElement, containsSubstringIgnoreCase } from "@/lib/utils";
-import { Checkbox } from "@/Components/ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/navigation";
 
 interface Props {

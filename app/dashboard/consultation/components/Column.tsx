@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import Consultation from "@/types/Consultation";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";

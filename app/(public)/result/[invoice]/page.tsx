@@ -1,4 +1,4 @@
-import Container from "@/Components/container/Container";
+import Container from "@/components/container/Container";
 import { getOneConsultation } from "@/service/consultation/getOneConsultation";
 import ResulData from "./components/ResulData";
 

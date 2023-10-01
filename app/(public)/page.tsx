@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Jumbotron from "./components/Jumbotron";
-import Container from "@/Components/container/Container";
+import Container from "@/components/container/Container";
 
 export default function Home() {
   return (

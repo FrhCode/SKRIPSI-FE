@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Card, CardContent, CardHeader } from "@/Components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import InvalidSessionException from "@/exception/InvalidSessionException";
 import { gelAllUser } from "@/service/user/gelAllUser";
 import { getServerSession } from "next-auth";

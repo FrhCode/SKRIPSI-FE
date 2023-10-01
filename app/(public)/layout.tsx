@@ -1,5 +1,5 @@
-import Footer from "@/Components/footer/Footer";
-import Header from "@/Components/header/Header";
+import Footer from "@/components/footer/Footer";
+import Header from "@/components/header/Header";
 
 export default function publicLayout({
   children, // will be a page or nested layout
