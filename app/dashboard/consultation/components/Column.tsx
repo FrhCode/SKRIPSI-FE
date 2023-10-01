@@ -1,18 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Button } from "@/Components/ui/button";
 import Consultation from "@/types/Consultation";
-import Symptom from "@/types/Symptom";
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
-import { MoreHorizontalIcon } from "lucide-react";
 
 export const columns: ColumnDef<Consultation>[] = [
   {

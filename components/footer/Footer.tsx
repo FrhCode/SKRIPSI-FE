@@ -1,5 +1,5 @@
 import Container from "../container/Container";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import Link from "next/link";
 import { AiFillGithub, AiFillYoutube } from "react-icons/ai";
 import { FaRss } from "react-icons/fa";

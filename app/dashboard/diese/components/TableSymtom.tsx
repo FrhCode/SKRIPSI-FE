@@ -6,23 +6,20 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/Components/ui/table";
 import React from "react";
 import DialogAddSymptom from "./DialogAddSymptom";
 import Symptom from "@/types/Symptom";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
-import { BsFillTrashFill } from "react-icons/bs";
-import { AiFillEdit } from "react-icons/ai";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { ExtractContentType } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/Components/ui/dropdown-menu";
 import { MoreHorizontalIcon } from "lucide-react";
 
 interface Props {

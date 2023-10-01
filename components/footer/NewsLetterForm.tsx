@@ -10,10 +10,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/Components/ui/form";
 import { motion } from "framer-motion";
 
-import { Input } from "@/components/ui/input";
+import { Input } from "@/Components/ui/input";
 import { BsArrowRight } from "react-icons/bs";
 import formSchema from "./schema/formSchema";
 

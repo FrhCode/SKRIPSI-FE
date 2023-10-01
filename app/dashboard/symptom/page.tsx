@@ -2,7 +2,7 @@ import { getAllSymptoms } from "@/service/symptom/getAllSymptom";
 import React from "react";
 import { DataTable } from "./components/DataTable";
 import { columns } from "./components/Column";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/Components/ui/card";
 
 export default async function Page() {
   const { content: symptoms } = await getAllSymptoms();

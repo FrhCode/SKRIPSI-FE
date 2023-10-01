@@ -7,12 +7,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/Components/ui/dialog";
 import React from "react";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Session, getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { paginateSymtom } from "@/service/symptom/paginateSymptom";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { FormAddSymtom } from "./FormAddSymtom";
 import InvalidSessionException from "@/exception/InvalidSessionException";
 

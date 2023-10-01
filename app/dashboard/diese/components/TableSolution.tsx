@@ -6,13 +6,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/Components/ui/table";
 import React from "react";
-import DialogAddSymptom from "./DialogAddSymptom";
 import Symptom from "@/types/Symptom";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
 import DialogAddSolution from "./DialogAddSolution";
-import { BsFillTrashFill } from "react-icons/bs";
 import { ExtractContentType } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -20,8 +18,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
+} from "@/Components/ui/dropdown-menu";
+import { Button } from "@/Components/ui/button";
 import { MoreHorizontalIcon } from "lucide-react";
 
 interface Props {

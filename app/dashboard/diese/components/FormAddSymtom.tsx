@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,7 +12,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from "@/Components/ui/form";
 import FormSchema from "./schema/formSchema";
 import {
   Select,
@@ -20,12 +20,12 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from "@/Components/ui/select";
+import { ScrollArea } from "@/Components/ui/scroll-area";
 import { useSession } from "next-auth/react";
 import addSymptoms from "@/service/diese/addSymptoms";
 import { useRouter } from "next/navigation";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from "@/Components/ui/use-toast";
 
 interface Props {
   symptoms: Array<{ label: string; value: string }>;

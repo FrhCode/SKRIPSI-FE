@@ -6,8 +6,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Session, getServerSession } from "next-auth";
+} from "@/Components/ui/card";
+import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import {
   Table,
@@ -16,8 +16,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
+} from "@/Components/ui/table";
+import { Button } from "@/Components/ui/button";
 import { format } from "date-fns";
 import { paginateConsultation } from "@/service/consultation/paginateConsultation";
 import InvalidSessionException from "@/exception/InvalidSessionException";
