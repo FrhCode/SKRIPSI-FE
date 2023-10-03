@@ -43,6 +43,7 @@ export const columns: ColumnDef<Consultation>[] = [
           <Button variant={"dashboard"} size={"sm"} asChild>
             <a
               href={`${process.env.NEXT_PUBLIC_API_URL}/api/v1/consultations/${consultation.invoice}/download`}
+              target="_blank"
             >
               Download
             </a>

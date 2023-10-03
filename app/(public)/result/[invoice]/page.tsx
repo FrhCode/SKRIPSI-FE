@@ -20,6 +20,7 @@ export default async function page({
             <a
               href={`${process.env.NEXT_PUBLIC_API_URL}/api/v1/consultations/${params.invoice}/download`}
               className="font-thin hover:underline"
+              target="_blank"
             >
               unduh hasil analisa
             </a>
