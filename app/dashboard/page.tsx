@@ -21,6 +21,9 @@ import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { paginateConsultation } from "@/service/consultation/paginateConsultation";
 import InvalidSessionException from "@/exception/InvalidSessionException";
+import { getDieseCount } from "@/service/diese/getDieseCount";
+import { getSymptomCount } from "@/service/symptom/getSymptomCount";
+import { getConsultationCount } from "@/service/consultation/getConsultationCount";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -36,6 +39,10 @@ export default async function Page() {
     token: jwtToken,
     size: 10,
   });
+
+  const { diese_count } = await getDieseCount(jwtToken);
+  const { symptom_count } = await getSymptomCount(jwtToken);
+  const { consultation_count } = await getConsultationCount(jwtToken);
 
   return (
     <>
@@ -65,7 +72,7 @@ export default async function Page() {
             </CardTitle>
           </CardHeader>
           <CardContent className="">
-            <span className="text-2xl font-bold">30</span>
+            <span className="text-2xl font-bold">{diese_count}</span>
           </CardContent>
         </Card>
 
@@ -77,7 +84,7 @@ export default async function Page() {
             </CardTitle>
           </CardHeader>
           <CardContent className="">
-            <span className="text-2xl font-bold">11</span>
+            <span className="text-2xl font-bold">{symptom_count}</span>
           </CardContent>
         </Card>
 
@@ -89,7 +96,7 @@ export default async function Page() {
             </CardTitle>
           </CardHeader>
           <CardContent className="">
-            <span className="text-2xl font-bold">230</span>
+            <span className="text-2xl font-bold">{consultation_count}</span>
           </CardContent>
         </Card>
       </div>
@@ -101,7 +108,6 @@ export default async function Page() {
         </CardHeader>
         <CardContent className="">
           <Table>
-            {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
             <TableHeader>
               <TableRow>
                 <TableHead className="">Tanggal Konsultasi</TableHead>
