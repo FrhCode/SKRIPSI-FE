@@ -116,6 +116,7 @@ DialogClose.displayName = DialogPrimitive.Title.displayName;
 
 export {
   Dialog,
+  DialogClose,
   DialogPortal,
   DialogOverlay,
   DialogTrigger,
@@ -124,5 +125,4 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-  DialogClose,
 };
