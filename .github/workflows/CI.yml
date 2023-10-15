@@ -19,5 +19,11 @@ jobs:
             cd /var/www/pakar.farhandev.cloud
             git pull origin main
             docker build -t skripsi-fe:latest .
+
+            # Check if the docker build command was successful
+            if [ $? -ne 0 ]; then
+              echo "Docker build failed"
+            fi
+
             docker rm -f skripsi-fe
             docker run -d --name skripsi-fe -p 3002:3000 skripsi-fe:latest
