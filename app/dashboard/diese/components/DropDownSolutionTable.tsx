@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontalIcon } from "lucide-react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 interface Props {
   id: string;
@@ -27,7 +27,7 @@ interface Props {
 
 export default function DropDownSolutionTable({ id }: Props) {
   const deleteDialogTrigger = useRef<HTMLButtonElement>(null);
-
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   return (
     <>
       <DropdownMenu>
@@ -41,7 +41,10 @@ export default function DropDownSolutionTable({ id }: Props) {
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem
             onClick={() => {
-              deleteDialogTrigger.current?.click();
+              setTimeout(() => {
+                // deleteDialogTrigger.current?.click();
+                setIsDeleteModalOpen(true);
+              }, 1);
             }}
           >
             <button>Hapus</button>
@@ -50,19 +53,26 @@ export default function DropDownSolutionTable({ id }: Props) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <AlertDialog>
-        <AlertDialogTrigger ref={deleteDialogTrigger}>Open</AlertDialogTrigger>
+      <AlertDialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>
+        {/* <AlertDialog> */}
+        <AlertDialogTrigger ref={deleteDialogTrigger} className="hidden">
+          Open
+        </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogTitle>Apakah Anda benar-benar yakin?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              Tindakan ini tidak bisa dibatalkan. Tindakan ini akan menghapus
+              solusi secara permanen dari server.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
+            {/* <AlertDialogCancel onClick={() => setIsDeleteModalOpen(false)}>
+              Cancel
+            </AlertDialogCancel> */}
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
+            {/* <AlertDialogAction onClick={() => {}}>Continue</AlertDialogAction> */}
+            <Button>Continue</Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

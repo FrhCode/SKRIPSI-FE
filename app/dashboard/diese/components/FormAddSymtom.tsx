@@ -85,16 +85,14 @@ export function FormAddSymtom({ symptoms, dieseCode }: Props) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <ScrollArea className="max-h-[200px] rounded-md">
-                    {symptoms
-                      .filter(({}, index) => index < 3)
-                      .map(({ label, value }) => {
-                        return (
-                          <SelectItem key={value} value={value}>
-                            {label}
-                          </SelectItem>
-                        );
-                      })}
+                  <ScrollArea className="h-[200px] rounded-md">
+                    {symptoms.map(({ label, value }) => {
+                      return (
+                        <SelectItem key={value} value={value}>
+                          {label}
+                        </SelectItem>
+                      );
+                    })}
                   </ScrollArea>
                 </SelectContent>
               </Select>

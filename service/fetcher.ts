@@ -1,3 +1,5 @@
+import InvalidSessionException from "@/exception/InvalidSessionException";
+
 export async function fetcher<T>(
   url: string,
   option?: RequestInit
@@ -14,7 +16,7 @@ export async function fetcher<T>(
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new InvalidSessionException();
   }
 
   const contentType = res.headers.get("content-type");
