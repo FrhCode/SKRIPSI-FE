@@ -23,6 +23,7 @@ jobs:
             # Check if the docker build command was successful
             if [ $? -ne 0 ]; then
               echo "Docker build failed"
+              exit 1  # This will exit the script with an error code
             fi
 
             docker rm -f skripsi-fe
