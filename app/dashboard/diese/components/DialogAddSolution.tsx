@@ -15,6 +15,7 @@ import { paginateSymtom } from "@/service/symptom/paginateSymptom";
 import { Button } from "@/components/ui/button";
 import { FormAddSymtom } from "./FormAddSymtom";
 import InvalidSessionException from "@/exception/InvalidSessionException";
+import FormAddSolution from "./FormAddSolution";
 
 interface Props {
   symptomName: string;
@@ -39,19 +40,21 @@ export default async function DialogAddSolution({
       <DialogTrigger>Tambah Solusi untuk penyakit {symptomName}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Form menambahkan gejala</DialogTitle>
+          <DialogTitle>Form menambahkan solusi</DialogTitle>
           <DialogDescription>
-            Aksi ini akan menambahkan gejala terhadap penyakit, Aksi ini dapat
-            mempengaruhi hasil perhitungan dari sistem.
+            Aksi ini akan menambahkan solusi terhadap penyakit, Aksi ini dapat
+            mempengaruhi hasil diagnosa dari sistem.
           </DialogDescription>
         </DialogHeader>
-        <FormAddSymtom
+        {/* <FormAddSymtom
           symptoms={symptoms.map((symptom) => ({
             label: symptom.name,
             value: symptom.code,
           }))}
           dieseCode={dieseCode}
-        />
+        /> */}
+        <FormAddSolution           dieseCode={dieseCode}
+/>
         <DialogFooter className="hidden">
           <DialogClose asChild>
             <Button data-close-modal>Save changes</Button>

@@ -1,4 +1,3 @@
-"use client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -11,35 +10,21 @@ import Menu from "./components/Menu";
 import MiniNav from "./components/MiniNav";
 import Link from "next/link";
 import { FaRegUserCircle } from "react-icons/fa";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import NullSessionException from "@/exception/NullSessionException";
 
-export default function DashBoardLayout({
+export default async function DashBoardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = useSession();
-  const router = useRouter();
+  const session = await getServerSession(authOptions);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
+  if (!session) {
+    console.log("NO SESSION");
 
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
-  if (session.status === "loading") {
-    // throw new InvalidSessionException();
-    // redirect("/signin");
-    return null;
-  }
-
-  if (session.status === "unauthenticated") {
-    router.replace("/signin");
-    return null;
+    throw new NullSessionException();
   }
 
   // const headersList = headers();
@@ -93,8 +78,8 @@ export default function DashBoardLayout({
   ];
 
   return (
-    <div className="flex h-[100dvh]">
-      <div className="hidden h-full w-60 flex-shrink-0 py-4 shadow lg:block">
+    <div className="flex">
+      <div className="hidden h-screen w-60 flex-shrink-0 py-4 shadow lg:block">
         <Link href={"/"}>
           <span className="flex h-14 items-center px-4 text-2xl font-black text-blue-600">
             Dokter Lele
@@ -104,7 +89,7 @@ export default function DashBoardLayout({
           <Menu menus={menus} />
         </ul>
       </div>
-      <div className="h-full flex-grow overflow-y-auto p-4 pb-20">
+      <div className="relative h-full max-h-screen flex-grow overflow-y-auto p-4 pb-20">
         <div className="mx-auto grid max-w-[1120px] grid-cols-1 content-start gap-4">
           <Card className="rounded shadow-sm">
             <CardContent className="flex h-14 items-center py-0">

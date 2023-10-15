@@ -42,7 +42,7 @@ export default async function DialogAddSymptom({
           <DialogTitle>Form menambahkan gejala</DialogTitle>
           <DialogDescription>
             Aksi ini akan menambahkan gejala terhadap penyakit, Aksi ini dapat
-            mempengaruhi hasil perhitungan dari sistem.
+            mempengaruhi hasil diagnosa dari sistem.
           </DialogDescription>
         </DialogHeader>
         <FormAddSymtom

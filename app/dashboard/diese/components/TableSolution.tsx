@@ -21,6 +21,18 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontalIcon } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import DropDownSolutionTable from "./DropDownSolutionTable";
 
 interface Props {
   diese: {
@@ -52,19 +64,7 @@ export default function TableSolution({ diese }: Props) {
             <TableRow key={id}>
               <TableCell className="">{name}</TableCell>
               <TableCell className="text-right">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="h-8 w-8 p-0">
-                      <span className="sr-only">Open menu</span>
-                      <MoreHorizontalIcon className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                    <DropdownMenuItem>Hapus</DropdownMenuItem>
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <DropDownSolutionTable id={id} />
               </TableCell>
             </TableRow>
           );
