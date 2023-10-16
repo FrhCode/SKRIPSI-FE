@@ -2,13 +2,12 @@ import Symptom from "@/types/Symptom";
 import { fetcher } from "../fetcher";
 
 export async function getDieseSymptoms(token: string, dieseCode: string) {
-  return fetcher<{ content: Symptom[] }>(
-    `/api/v1/dieses/${dieseCode}/symptoms`,
-    {
-      cache: "no-cache",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const url = `/api/v1/dieses/${dieseCode}/symptoms`;
+
+  return fetcher<{ content: Symptom[] }>(url, {
+    cache: "no-cache",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 }

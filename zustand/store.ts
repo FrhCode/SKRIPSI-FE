@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 interface Store {
   isNavOpen: boolean;
+  // eslint-disable-next-line no-unused-vars
   toggleIsNavOpen: (toogle?: boolean) => void;
 }
 

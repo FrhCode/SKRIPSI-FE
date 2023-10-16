@@ -16,9 +16,11 @@ export function containsSubstringIgnoreCase(
 }
 
 export type ExtractContentType<
+  // eslint-disable-next-line no-unused-vars
   T extends (...args: any) => Promise<{ content: any }>
+// eslint-disable-next-line no-unused-vars
 > = T extends (...args: any) => Promise<{
   content: infer R;
 }>
   ? R
-  : any;
+  : never;

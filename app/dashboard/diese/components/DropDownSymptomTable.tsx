@@ -18,23 +18,28 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/components/ui/use-toast";
-import deleteSolution from "@/service/solution/deleteSolution";
+import deleteSymptom from "@/service/diese/deleteSymptom";
 import { MoreHorizontalIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 
 interface Props {
-  id: string;
+  symptomsCode: string;
+  dieseCode: string;
 }
 
-export default function DropDownSolutionTable({ id }: Props) {
+export default function DropDownSymptomTable({
+  dieseCode,
+  symptomsCode,
+}: Props) {
   const { data: session } = useSession();
 
   const router = useRouter();
 
   const deleteDialogTrigger = useRef<HTMLButtonElement>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   return (
     <>
       <DropdownMenu>
@@ -83,8 +88,14 @@ export default function DropDownSolutionTable({ id }: Props) {
               onClick={async () => {
                 if (!session) return;
 
-                await deleteSolution({ id, token: session.jwtToken });
+                await deleteSymptom({
+                  symptomsCode,
+                  dieseCode,
+                  token: session.jwtToken,
+                });
+
                 router.refresh();
+
                 toast({
                   title: "Data Berhasil Dihapus",
                   description: "Data telah dihapus dari dalam aplikasi.",

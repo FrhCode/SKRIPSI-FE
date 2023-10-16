@@ -1,19 +1,19 @@
 interface Props {
-  symptomsCode: string[];
   dieseCode: string;
+  symptomsCode: string;
   token: string;
 }
-export default async function addSymptoms({
+export default async function deleteSymptom({
   dieseCode,
   symptomsCode,
   token,
 }: Props) {
   const url =
-    process.env.NEXT_PUBLIC_API_URL + `/api/v1/dieses/${dieseCode}/symptoms`;
+    process.env.NEXT_PUBLIC_API_URL +
+    `/api/v1/dieses/${dieseCode}/symptoms/${symptomsCode}`;
 
   const res: Response = await fetch(url, {
-    method: "PUT",
-    body: JSON.stringify({ symptomsCode }),
+    method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",

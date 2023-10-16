@@ -7,18 +7,18 @@ interface Props {
   token: string;
 }
 export default async function addSolution({ dieseCode, token, data }: Props) {
-  const res: Response = await fetch(
+  const url =
     process.env.NEXT_PUBLIC_API_URL +
-      `/api/v1/dieses/${dieseCode}/solutions/add`,
-    {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    }
-  );
+    `/api/v1/dieses/${dieseCode}/solutions`;
+
+  const res: Response = await fetch(url, {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

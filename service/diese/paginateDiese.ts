@@ -18,7 +18,9 @@ export async function paginateDiese({
     sortDirection,
   });
 
-  return fetcher<Page<Disease>>(`/api/v1/dieses?${params.toString()}`, {
+  const url = `/api/v1/dieses?${params.toString()}`;
+
+  return fetcher<Page<Disease>>(url, {
     cache: "no-cache",
     headers: {
       Authorization: `Bearer ${token}`,

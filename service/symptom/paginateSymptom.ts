@@ -17,7 +17,9 @@ export async function paginateSymtom({
     sortDirection,
   });
 
-  return fetcher<Page<Symptom>>(`/api/v1/symptoms?${params.toString()}`, {
+  const url = `/api/v1/symptoms?${params.toString()}`;
+
+  return fetcher<Page<Symptom>>(url, {
     cache: "no-cache",
     headers: {
       Authorization: `Bearer ${token}`,

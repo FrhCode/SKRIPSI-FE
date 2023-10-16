@@ -1,8 +1,8 @@
 import { fetcher } from "../fetcher";
-import { Solution } from "@/types/Consultation";
 
 export async function getSymptomCount(token: string) {
-  return fetcher<{ symptom_count: number }>(`/api/v1/symptoms/count`, {
+  const url = `/api/v1/symptoms/count`;
+  return fetcher<{ symptom_count: number }>(url, {
     cache: "no-cache",
     headers: {
       Authorization: `Bearer ${token}`,

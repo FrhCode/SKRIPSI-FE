@@ -11,16 +11,8 @@ import React from "react";
 import DialogAddSymptom from "./DialogAddSymptom";
 import Symptom from "@/types/Symptom";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
-import { Button } from "@/components/ui/button";
 import { ExtractContentType } from "@/lib/utils";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { MoreHorizontalIcon } from "lucide-react";
+import DropDownSymptomTable from "./DropDownSymptomTable";
 
 interface Props {
   diese: {
@@ -55,19 +47,10 @@ export default function TableSymtom({ diese }: Props) {
               <TableCell>{name}</TableCell>
               <TableCell className="">{dsValue}</TableCell>
               <TableCell className="flex justify-end">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="h-8 w-8 p-0">
-                      <span className="sr-only">Open menu</span>
-                      <MoreHorizontalIcon className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                    <DropdownMenuItem>Hapus</DropdownMenuItem>
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <DropDownSymptomTable
+                  dieseCode={diese.code}
+                  symptomsCode={code}
+                />
               </TableCell>
             </TableRow>
           );

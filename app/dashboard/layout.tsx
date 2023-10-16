@@ -22,8 +22,6 @@ export default async function DashBoardLayout({
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    console.log("NO SESSION");
-
     throw new NullSessionException();
   }
 
@@ -79,7 +77,7 @@ export default async function DashBoardLayout({
 
   return (
     <div className="flex">
-      <div className="hidden h-screen w-60 flex-shrink-0 py-4 shadow lg:block">
+      <div className="hidden h-screen w-60 flex-shrink-0 py-4 lg:block">
         <Link href={"/"}>
           <span className="flex h-14 items-center px-4 text-2xl font-black text-blue-600">
             Dokter Lele
