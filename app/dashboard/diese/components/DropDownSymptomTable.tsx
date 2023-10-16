@@ -42,7 +42,7 @@ export default function DropDownSymptomTable({
 
   return (
     <>
-      <DropdownMenu>
+      {/* <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-8 w-8 p-0">
             <span className="sr-only">Open menu</span>
@@ -63,13 +63,11 @@ export default function DropDownSymptomTable({
           </DropdownMenuItem>
           <DropdownMenuItem>Edit</DropdownMenuItem>
         </DropdownMenuContent>
-      </DropdownMenu>
+      </DropdownMenu> */}
 
       <AlertDialog open={isDeleteModalOpen} onOpenChange={setIsDeleteModalOpen}>
         {/* <AlertDialog> */}
-        <AlertDialogTrigger ref={deleteDialogTrigger} className="hidden">
-          Open
-        </AlertDialogTrigger>
+        <AlertDialogTrigger ref={deleteDialogTrigger}>Hapus</AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Apakah Anda benar-benar yakin?</AlertDialogTitle>

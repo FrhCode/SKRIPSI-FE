@@ -12,7 +12,7 @@ export default async function addSolution({ dieseCode, token, data }: Props) {
     `/api/v1/dieses/${dieseCode}/solutions`;
 
   const res: Response = await fetch(url, {
-    method: "PUT",
+    method: "POST",
     body: JSON.stringify(data),
     headers: {
       Authorization: `Bearer ${token}`,

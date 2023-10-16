@@ -12,7 +12,7 @@ export default async function addSymptoms({
     process.env.NEXT_PUBLIC_API_URL + `/api/v1/dieses/${dieseCode}/symptoms`;
 
   const res: Response = await fetch(url, {
-    method: "PUT",
+    method: "POST",
     body: JSON.stringify({ symptomsCode }),
     headers: {
       Authorization: `Bearer ${token}`,
