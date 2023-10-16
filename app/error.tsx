@@ -11,6 +11,8 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
       signOut({ callbackUrl: "/signin", redirect: true });
     } else if (error.message === "No Session Detected") {
       router.push("/signin");
+    } else {
+      signOut({ callbackUrl: "/signin", redirect: true });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
