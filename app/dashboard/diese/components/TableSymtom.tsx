@@ -23,13 +23,21 @@ interface Props {
     name: string;
     description: string;
   };
+  symptoms: Symptom[];
 }
 
-export default function TableSymtom({ diese }: Props) {
+export default async function TableSymtom({ diese, symptoms }: Props) {
   return (
     <Table>
       <TableCaption>
-        <DialogAddSymptom symptomName={diese.name} dieseCode={diese.code} />
+        <DialogAddSymptom
+          symptomName={diese.name}
+          dieseCode={diese.code}
+          symptoms={symptoms.map(({ code, name }) => ({
+            label: name,
+            value: code,
+          }))}
+        />
       </TableCaption>
       <TableHeader>
         <TableRow>

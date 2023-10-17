@@ -39,16 +39,17 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 interface Props {
   symptomName: string;
   dieseCode: string;
+  symptoms: Array<{ label: string; value: string }>;
 }
 
-export default function DialogAddSymptom({ symptomName, dieseCode }: Props) {
+export default function DialogAddSymptom({
+  symptomName,
+  dieseCode,
+  symptoms,
+}: Props) {
   const { data: session } = useSession();
 
   const selectRef = useRef<HTMLButtonElement>(null);
-
-  const [symptoms, setSymptoms] = useState<
-    Array<{ label: string; value: string }>
-  >([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -59,21 +60,6 @@ export default function DialogAddSymptom({ symptomName, dieseCode }: Props) {
   });
 
   const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (session?.jwtToken) {
-      paginateSymtom({ token: session.jwtToken || "", size: 50 }).then(
-        (res) => {
-          const symptoms = res.content.map((symptom) => ({
-            label: symptom.name,
-            value: symptom.code,
-          }));
-
-          setSymptoms(symptoms);
-        }
-      );
-    }
-  }, [session?.jwtToken]);
 
   useEffect(() => {
     form.reset();

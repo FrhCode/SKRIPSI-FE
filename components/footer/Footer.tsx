@@ -11,7 +11,7 @@ export default function Footer() {
     <Container.Root className="border-t border-slate-200 pb-16 pt-48">
       <Container.Content className="grid grid-cols-1 md:grid-cols-12 lg:gap-x-5">
         <div className="md:col-span-4">
-          <p className="text-xl font-medium sm:text-2xl">Docker Lele</p>
+          <p className="text-xl font-medium sm:text-2xl">Dokter Lele</p>
           <p className="mt-6 text-2xl leading-9 text-slate-400">
             Aplikasi diagnosa penyakit ikan lele
           </p>

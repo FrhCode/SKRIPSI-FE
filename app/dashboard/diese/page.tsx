@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getDieseSolutions } from "@/service/diese/getDieseSolution";
 import SolutionTable from "./components/TableSolution";
 import InvalidSessionException from "@/exception/InvalidSessionException";
+import { paginateSymtom } from "@/service/symptom/paginateSymptom";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -31,6 +32,11 @@ export default async function Page() {
   });
 
   const dieses = await Promise.all(diesePromises);
+
+  const { content: symptoms } = await paginateSymtom({
+    token: jwtToken,
+    size: 50,
+  });
 
   return (
     <>
@@ -57,7 +63,7 @@ export default async function Page() {
                   <TabsTrigger value="Solusi">Solusi</TabsTrigger>
                 </TabsList>
                 <TabsContent value="Gejala">
-                  <SymtomTable diese={diese} />
+                  <SymtomTable diese={diese} symptoms={symptoms} />
                 </TabsContent>
                 <TabsContent value="Solusi">
                   <SolutionTable diese={diese} />

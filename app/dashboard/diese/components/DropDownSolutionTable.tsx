@@ -23,18 +23,25 @@ import { MoreHorizontalIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
+import DialogAddSolution from "./DialogAddSolution";
+import DialogEditSolution from "./DialogEditSolution";
+import { Solution } from "@/types/Consultation";
 
 interface Props {
-  id: string;
+  solution: Solution & { id: string };
 }
 
-export default function DropDownSolutionTable({ id }: Props) {
+export default function DropDownSolutionTable({
+  solution: { description, name, id },
+}: Props) {
   const { data: session } = useSession();
 
   const router = useRouter();
 
   const deleteDialogTrigger = useRef<HTMLButtonElement>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   return (
     <>
       <DropdownMenu>
@@ -56,7 +63,16 @@ export default function DropDownSolutionTable({ id }: Props) {
           >
             <button>Hapus</button>
           </DropdownMenuItem>
-          <DropdownMenuItem>Edit</DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => {
+              setTimeout(() => {
+                // deleteDialogTrigger.current?.click();
+                setIsEditModalOpen(true);
+              }, 1);
+            }}
+          >
+            <button>Edit</button>
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -98,6 +114,12 @@ export default function DropDownSolutionTable({ id }: Props) {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <DialogEditSolution
+        solution={{ description, id, name }}
+        open={isEditModalOpen}
+        setIsOpen={setIsEditModalOpen}
+      />
     </>
   );
 }

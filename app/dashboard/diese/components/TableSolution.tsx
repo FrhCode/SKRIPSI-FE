@@ -39,12 +39,12 @@ export default function TableSolution({ diese }: Props) {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {diese.solutions.map(({ id, name }) => {
+        {diese.solutions.map(({ id, name, description }) => {
           return (
             <TableRow key={id}>
               <TableCell className="">{name}</TableCell>
               <TableCell className="text-right">
-                <DropDownSolutionTable id={id} />
+                <DropDownSolutionTable solution={{ id, description, name }} />
               </TableCell>
             </TableRow>
           );
