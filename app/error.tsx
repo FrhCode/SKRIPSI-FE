@@ -12,6 +12,7 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
     } else if (error.message === "No Session Detected") {
       router.push("/signin");
     } else {
+      // TODO:  error g tau kenapa, beresin nanati
       signOut({ callbackUrl: "/signin", redirect: true });
     }
 

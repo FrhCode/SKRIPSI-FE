@@ -44,6 +44,8 @@ interface Props {
 export default function DialogAddSymptom({ symptomName, dieseCode }: Props) {
   const { data: session } = useSession();
 
+  const selectRef = useRef<HTMLButtonElement>(null);
+
   const [symptoms, setSymptoms] = useState<
     Array<{ label: string; value: string }>
   >([]);
@@ -124,7 +126,10 @@ export default function DialogAddSymptom({ symptomName, dieseCode }: Props) {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="text-left [&>span:first-child]:line-clamp-1">
+                      <SelectTrigger
+                        ref={selectRef}
+                        className="text-left [&>span:first-child]:line-clamp-1"
+                      >
                         <SelectValue placeholder="Pilih Gejala" />
                       </SelectTrigger>
                     </FormControl>
@@ -132,7 +137,13 @@ export default function DialogAddSymptom({ symptomName, dieseCode }: Props) {
                       <ScrollArea className="h-[200px] rounded-md">
                         {symptoms.map(({ label, value }) => {
                           return (
-                            <SelectItem key={value} value={value}>
+                            <SelectItem
+                              key={value}
+                              value={value}
+                              style={{
+                                width: selectRef.current?.offsetWidth,
+                              }}
+                            >
                               {label}
                             </SelectItem>
                           );
