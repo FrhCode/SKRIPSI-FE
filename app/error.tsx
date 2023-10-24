@@ -13,7 +13,7 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
       router.push("/signin");
     } else {
       // TODO:  error g tau kenapa, beresin nanati
-      signOut({ callbackUrl: "/signin", redirect: true });
+      // signOut({ callbackUrl: "/signin", redirect: true });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

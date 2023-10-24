@@ -11,6 +11,15 @@ import { getDieseSolutions } from "@/service/diese/getDieseSolution";
 import SolutionTable from "./components/TableSolution";
 import InvalidSessionException from "@/exception/InvalidSessionException";
 import { paginateSymtom } from "@/service/symptom/paginateSymptom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { MoreHorizontalIcon } from "lucide-react";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -46,6 +55,23 @@ export default async function Page() {
             <CardHeader>
               <CardTitle className=" flex items-center justify-between text-2xl font-medium">
                 <span>{diese.name}</span>
+                <div className="relative">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <div className="flex justify-end">
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                          <span className="sr-only">Open menu</span>
+                          <MoreHorizontalIcon className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <DropdownMenuItem>Hapus</DropdownMenuItem>
+                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
