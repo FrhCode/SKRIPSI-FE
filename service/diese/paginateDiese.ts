@@ -1,10 +1,10 @@
 import Page from "@/types/Page";
 import { fetcher } from "../fetcher";
 import { PaginateSearchParams } from "@/types/PaginateSearchParams";
-import Disease from "@/types/Diese";
+import Diese from "@/types/Diese";
 
 interface Props
-  extends PaginateSearchParams<keyof Omit<Disease, "description">> {}
+  extends PaginateSearchParams<keyof Omit<Diese, "description">> {}
 
 export async function paginateDiese({
   token,
@@ -20,7 +20,7 @@ export async function paginateDiese({
 
   const url = `/api/v1/dieses?${params.toString()}`;
 
-  return fetcher<Page<Disease>>(url, {
+  return fetcher<Page<Diese>>(url, {
     cache: "no-cache",
     headers: {
       Authorization: `Bearer ${token}`,

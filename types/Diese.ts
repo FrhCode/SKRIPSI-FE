@@ -1,8 +1,8 @@
-interface Disease {
+interface Diese {
   id: number;
   code: string;
   name: string;
   description: string;
 }
 
-export default Disease;
+export default Diese;
