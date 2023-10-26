@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/error.tsx.bak"
+    "app/error.tsx"
   ],
   "exclude": ["node_modules"]
 }
