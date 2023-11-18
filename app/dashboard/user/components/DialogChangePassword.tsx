@@ -22,42 +22,38 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import Diese from "@/types/Diese";
-import EditDieseSchema from "./schema/editDieseSchema";
-import editDiese from "@/service/diese/editDiese";
+import User from "@/types/User";
+import changeUserPassword from "@/service/user/changeUserPassword";
+import ChangePasswordSchema from "./schema/ChagePasswordSchema";
 
 interface Props {
+  user: User;
   open: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  diese: Diese;
 }
 
-export default function DialogEditDiese({
+export default function DialogChangePassword({
+  user: { id },
   open,
   setIsOpen,
-  diese: { code, description, name },
 }: Props) {
   const { data: session } = useSession();
 
   const router = useRouter();
-  const form = useForm<z.infer<typeof EditDieseSchema>>({
-    resolver: zodResolver(EditDieseSchema),
+  const form = useForm<z.infer<typeof ChangePasswordSchema>>({
+    resolver: zodResolver(ChangePasswordSchema),
     defaultValues: {
-      description,
-      name,
+      password: "",
     },
   });
 
-  async function onSubmit({
-    description,
-    name,
-  }: z.infer<typeof EditDieseSchema>) {
-    await editDiese({
-      diese: { code, description, name },
+  async function onSubmit(data: z.infer<typeof ChangePasswordSchema>) {
+    await changeUserPassword({
+      user: { id, ...data },
       token: session!.jwtToken,
     });
+
     router.refresh();
 
     toast({
@@ -69,8 +65,8 @@ export default function DialogEditDiese({
   }
 
   useEffect(() => {
-    form.reset({ description, name });
-  }, [description, form, name, open]);
+    form.reset();
+  }, [form, open]);
 
   return (
     <Form {...form}>
@@ -78,44 +74,30 @@ export default function DialogEditDiese({
         <Dialog open={open} onOpenChange={setIsOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Form mengedit penyakit</DialogTitle>
+              <DialogTitle>Form mengedit password</DialogTitle>
               <DialogDescription>
-                Aksi ini akan mengubah data penyakit, Aksi ini dapat
-                mempengaruhi hasil diagnosa dari sistem.
+                Aksi ini akan mengubah data user passowrd.
               </DialogDescription>
             </DialogHeader>
             <FormField
               control={form.control}
-              name="name"
+              name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nama</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="solusi" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Deskripsi</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Deskripsi tentang solusi"
+                    <Input
+                      placeholder="Password"
                       {...field}
-                      rows={6}
+                      type="password"
+                      autoComplete="new-password"
                     />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <DialogFooter>
               <Button type="submit" onClick={form.handleSubmit(onSubmit)}>
                 Simpan

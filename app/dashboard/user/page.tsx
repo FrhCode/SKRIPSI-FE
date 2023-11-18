@@ -14,7 +14,6 @@ export default async function page() {
   }
   const { jwtToken } = session;
   const { content: users } = await gelAllUser(jwtToken);
-  console.log(users);
 
   return (
     <Card className="rounded shadow-sm">

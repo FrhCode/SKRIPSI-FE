@@ -12,7 +12,7 @@ import Link from "next/link";
 import { FaRegUserCircle } from "react-icons/fa";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
-import NullSessionException from "@/exception/NullSessionException";
+import { redirect } from "next/navigation";
 
 export default async function DashBoardLayout({
   children,
@@ -22,7 +22,7 @@ export default async function DashBoardLayout({
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    throw new NullSessionException();
+    redirect("/signin");
   }
 
   // const headersList = headers();

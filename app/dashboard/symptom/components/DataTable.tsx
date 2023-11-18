@@ -50,10 +50,7 @@ export function DataTable<TData, TValue>({
 
   const [pageIndex, setPageIndex] = useState(0);
 
-  // console.log("sorting", sorting);
-  // console.log("filter", columnFilters);
-  // console.log("visibility", columnVisibility);
-  // console.log("row selection", rowSelection);
+
 
   const table = useReactTable({
     data,
@@ -77,10 +74,7 @@ export function DataTable<TData, TValue>({
       pagination: { pageSize: 15, pageIndex },
     },
   });
-  // console.log(table.getPageCount());
-  // console.log(table.getPageOptions());
 
-  // console.log(table.getAllColumns());
 
   return (
     <>

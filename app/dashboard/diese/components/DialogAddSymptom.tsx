@@ -9,7 +9,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import React, { useEffect, useRef, useState } from "react";
-import { paginateSymtom } from "@/service/symptom/paginateSymptom";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";

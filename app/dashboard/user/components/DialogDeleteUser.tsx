@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import deleteDiese from "@/service/diese/deleteDiese";
+import deleteUser from "@/service/user/deleteUser";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -17,10 +17,10 @@ import React from "react";
 type Props = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  dieseCode: string;
+  userId: number;
 };
 
-export default function DialogDeleteDiese({ open, setOpen, dieseCode }: Props) {
+export default function DialogDeleteUser({ open, setOpen, userId }: Props) {
   const { data: session } = useSession();
   const router = useRouter();
   return (
@@ -28,10 +28,10 @@ export default function DialogDeleteDiese({ open, setOpen, dieseCode }: Props) {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Anda yakin ingin menghapus penyakit ini?
+            Anda yakin ingin menghapus user ini?
           </AlertDialogTitle>
           <AlertDialogDescription>
-            Aksi ini akan menghapuspenyakit dari sistem.
+            Aksi ini akan menghapus user.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -40,7 +40,8 @@ export default function DialogDeleteDiese({ open, setOpen, dieseCode }: Props) {
           <Button
             onClick={async () => {
               try {
-                await deleteDiese({ dieseCode, token: session!.jwtToken });
+                // await deleteDiese({ dieseCode, token: session!.jwtToken });
+                await deleteUser({ userId, token: session!.jwtToken });
                 router.refresh();
                 toast({
                   title: "Berhasil menghapus data",
@@ -50,8 +51,7 @@ export default function DialogDeleteDiese({ open, setOpen, dieseCode }: Props) {
               } catch (error) {
                 toast({
                   title: "Gagal menghapus data",
-                  description:
-                    "Gagal menghapus data, pastikan gejala tidak ter-asosiasi dengan penyakit manapun",
+                  description: "Gagal menghapus data",
                   variant: "destructive",
                 });
               } finally {

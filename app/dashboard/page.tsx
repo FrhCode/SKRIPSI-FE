@@ -32,8 +32,7 @@ export default async function Page() {
   }
   const { jwtToken } = session;
 
-  // console.log("expires: " + expires);
-  // console.log(user);
+
 
   const consultationPaginate = await paginateConsultation({
     token: jwtToken,

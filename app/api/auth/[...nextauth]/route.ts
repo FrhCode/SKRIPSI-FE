@@ -11,6 +11,8 @@ export const authOptions: NextAuthOptions = {
         password: {},
       },
       async authorize(credentials) {
+        console.log(credentials);
+
         if (!credentials?.email || !credentials?.password) return null;
         const { email, password } = credentials;
         const res = await fetch(
@@ -26,12 +28,14 @@ export const authOptions: NextAuthOptions = {
             },
           }
         );
-        if (res.status == 401) {
-          console.log(res.statusText);
+        console.log(res);
 
+        if (res.status == 401) {
           return null;
         }
         const user = await res.json();
+        console.log(user);
+
         return user;
       },
     }),
@@ -45,8 +49,6 @@ export const authOptions: NextAuthOptions = {
     },
 
     async session({ token, session }) {
-      // console.log({ session, token });
-
       session.userDetail = token.user;
       session.jwtToken = token.jwtToken;
       session.user = {
@@ -54,11 +56,6 @@ export const authOptions: NextAuthOptions = {
         email: token.user.email,
         image: token.user.profileImage,
       };
-      // session.expires = new Date()
-      //   .setMinutes(new Date().getMinutes() + 3)
-      //   .toString();
-
-      // session.expires = session.te;
 
       return session;
     },

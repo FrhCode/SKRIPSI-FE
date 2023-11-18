@@ -22,42 +22,44 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import Diese from "@/types/Diese";
-import EditDieseSchema from "./schema/editDieseSchema";
-import editDiese from "@/service/diese/editDiese";
+import UpdateUserSchema from "./schema/UpdateUserSchema";
+import User from "@/types/User";
+import editUser from "@/service/user/editUser";
 
 interface Props {
+  user: User;
   open: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  diese: Diese;
 }
 
-export default function DialogEditDiese({
+export default function DialogEditUser({
+  user: { name, phoneNumber, id },
   open,
   setIsOpen,
-  diese: { code, description, name },
 }: Props) {
   const { data: session } = useSession();
 
   const router = useRouter();
-  const form = useForm<z.infer<typeof EditDieseSchema>>({
-    resolver: zodResolver(EditDieseSchema),
+  const form = useForm<z.infer<typeof UpdateUserSchema>>({
+    resolver: zodResolver(UpdateUserSchema),
     defaultValues: {
-      description,
       name,
+      phoneNumber,
     },
   });
 
-  async function onSubmit({
-    description,
-    name,
-  }: z.infer<typeof EditDieseSchema>) {
-    await editDiese({
-      diese: { code, description, name },
+  async function onSubmit(data: z.infer<typeof UpdateUserSchema>) {
+    // await editSymptom({
+    //   symptom: { code, dsValue, name },
+    //   token: session!.jwtToken,
+    // });
+
+    await editUser({
+      user: { id, ...data },
       token: session!.jwtToken,
     });
+
     router.refresh();
 
     toast({
@@ -69,8 +71,8 @@ export default function DialogEditDiese({
   }
 
   useEffect(() => {
-    form.reset({ description, name });
-  }, [description, form, name, open]);
+    form.reset({ name, phoneNumber });
+  }, [form, name, phoneNumber, open]);
 
   return (
     <Form {...form}>
@@ -78,10 +80,9 @@ export default function DialogEditDiese({
         <Dialog open={open} onOpenChange={setIsOpen}>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Form mengedit penyakit</DialogTitle>
+              <DialogTitle>Form mengedit user</DialogTitle>
               <DialogDescription>
-                Aksi ini akan mengubah data penyakit, Aksi ini dapat
-                mempengaruhi hasil diagnosa dari sistem.
+                Aksi ini akan mengubah data user.
               </DialogDescription>
             </DialogHeader>
             <FormField
@@ -91,7 +92,7 @@ export default function DialogEditDiese({
                 <FormItem>
                   <FormLabel>Nama</FormLabel>
                   <FormControl>
-                    <Input placeholder="solusi" {...field} />
+                    <Input placeholder="Nama" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -100,22 +101,18 @@ export default function DialogEditDiese({
 
             <FormField
               control={form.control}
-              name="description"
+              name="phoneNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Deskripsi</FormLabel>
+                  <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Deskripsi tentang solusi"
-                      {...field}
-                      rows={6}
-                    />
+                    <Input placeholder="Phone Number" {...field} />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <DialogFooter>
               <Button type="submit" onClick={form.handleSubmit(onSubmit)}>
                 Simpan

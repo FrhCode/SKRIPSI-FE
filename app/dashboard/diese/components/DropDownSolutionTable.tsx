@@ -23,7 +23,6 @@ import { MoreHorizontalIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
-import DialogAddSolution from "./DialogAddSolution";
 import DialogEditSolution from "./DialogEditSolution";
 import { Solution } from "@/types/Consultation";
 

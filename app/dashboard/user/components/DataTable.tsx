@@ -30,6 +30,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import DialogCreateUser from "./DialogCreateUser";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -48,11 +49,6 @@ export function DataTable<TData, TValue>({
   const [rowSelection, setRowSelection] = useState({});
 
   const [pageIndex, setPageIndex] = useState(0);
-
-  // console.log("sorting", sorting);
-  // console.log("filter", columnFilters);
-  // console.log("visibility", columnVisibility);
-  // console.log("row selection", rowSelection);
 
   const table = useReactTable({
     data,
@@ -76,14 +72,10 @@ export function DataTable<TData, TValue>({
       pagination: { pageSize: 15, pageIndex },
     },
   });
-  // console.log(table.getPageCount());
-  // console.log(table.getPageOptions());
-
-  // console.log(table.getAllColumns());
 
   return (
     <>
-      <div className="flex items-center py-4">
+      <div className="flex w-full items-center justify-between py-4">
         <Input
           placeholder="Filter nama..."
           value={(table.getColumn("Nama")?.getFilterValue() as string) ?? ""}
@@ -92,32 +84,36 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Kolom
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+
+        <div className="flex items-center gap-3">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                Kolom
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  );
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DialogCreateUser />
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>

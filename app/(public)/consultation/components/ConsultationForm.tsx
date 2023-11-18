@@ -46,7 +46,6 @@ export default function ConsultationForm({ symptoms }: Props) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     const res: {
       invoice: string;
     } = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/v1/consultations", {
@@ -57,7 +56,6 @@ export default function ConsultationForm({ symptoms }: Props) {
       },
     }).then((res) => res.json());
 
-    console.log(res);
     router.push(`/result/${res.invoice}`);
   }
 

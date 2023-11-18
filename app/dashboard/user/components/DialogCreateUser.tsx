@@ -8,12 +8,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import AddSymptomSchema from "./schema/AddSymptomSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/components/ui/use-toast";
 import {
@@ -24,82 +24,65 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import CreateUserSchema from "./schema/CreateUserSchema";
 import { Input } from "@/components/ui/input";
-import createSymptoms from "@/service/symptom/createSymptoms";
-import { useSession } from "next-auth/react";
+import createUser from "@/service/user/createUser";
 
-export default function DialogAddSymptom() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+interface Props {}
+
+export default function DialogCreateUser({}: Props) {
   const { data: session } = useSession();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const router = useRouter();
-  const form = useForm<z.infer<typeof AddSymptomSchema>>({
-    resolver: zodResolver(AddSymptomSchema),
-    defaultValues: {
-      code: "",
-      dsValue: 0,
-      name: "",
-    },
+  const form = useForm<z.infer<typeof CreateUserSchema>>({
+    resolver: zodResolver(CreateUserSchema),
+    defaultValues: {},
   });
-
-  const number = "3.4";
-
-  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     form.reset();
   }, [form, isModalOpen]);
 
-  async function onSubmit(data: z.infer<typeof AddSymptomSchema>) {
-    try {
-      await createSymptoms({
-        code: data.code,
-        dsValue: data.dsValue,
-        name: data.name,
-        token: session!.jwtToken,
-      });
+  async function onSubmit(data: z.infer<typeof CreateUserSchema>) {
+    // await addSymptoms({
+    //   dieseCode,
+    //   symptomsCode: [data.symptomCode],
+    //   token: session!.jwtToken,
+    // });
+    await createUser({
+      user: data,
+      token: session!.jwtToken,
+    });
 
-      router.refresh();
+    router.refresh();
 
-      toast({
-        title: "Data Berhasil Ditambahkan",
-        description: "Data telah berhasil ditambahkan ke dalam aplikasi.",
-      });
+    toast({
+      title: "Data Berhasil Ditambahkan",
+      description: "Data telah berhasil ditambahkan ke dalam aplikasi.",
+    });
 
-      setIsModalOpen(false);
-    } catch (error) {}
+    setIsModalOpen(false);
   }
 
   return (
     <Form {...form}>
-      <form
-        ref={formRef}
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           <DialogTrigger asChild>
-            <Button variant={"ghost"}>Buat gejala baru</Button>
+            <Button variant={"dashboard"} size={"sm"}>
+              Tambah User
+            </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Form menambahkan gejala</DialogTitle>
               <DialogDescription>
-                Aksi ini akan menambahkan gejala baru pada sistem.
+                Aksi ini akan menambahkan user baru pada sistem, user ini akan
+                dapat masuk kedalam sistem.
               </DialogDescription>
             </DialogHeader>
-            <FormField
-              control={form.control}
-              name="code"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Code</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Contoh: SC01" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="name"
@@ -107,7 +90,7 @@ export default function DialogAddSymptom() {
                 <FormItem>
                   <FormLabel>Nama</FormLabel>
                   <FormControl>
-                    <Input placeholder="Nama gejala" {...field} />
+                    <Input placeholder="Nama" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -116,21 +99,51 @@ export default function DialogAddSymptom() {
 
             <FormField
               control={form.control}
-              name="dsValue"
+              name="phoneNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nilai DS</FormLabel>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Phone Number" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="bilangan antara 0-1"
+                      placeholder="Password"
                       {...field}
-                      type="number"
+                      type="password"
+                      autoComplete="new-password"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             <DialogFooter>
               <Button type="submit" onClick={form.handleSubmit(onSubmit)}>
                 Simpan
