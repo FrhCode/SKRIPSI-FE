@@ -41,7 +41,6 @@ export default function DialogAddSymptom() {
     },
   });
 
-  const number = "3.4";
 
   const formRef = useRef<HTMLFormElement>(null);
 

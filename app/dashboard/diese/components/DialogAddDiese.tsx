@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import AddSymptomSchema from "./schema/AddSymptomSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@/components/ui/use-toast";
 import {
@@ -27,7 +26,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import createSymptoms from "@/service/symptom/createSymptoms";
 import { useSession } from "next-auth/react";
 import CreateDieseSchema from "./schema/CreateDieseSchema";
 import { Textarea } from "@/components/ui/textarea";

@@ -15,11 +15,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
+  const [showInvalidCredentialError, setShowInvalidCredentialError] =
+    useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -34,6 +38,14 @@ export default function LoginForm() {
       email: values.email,
       password: values.password,
       callbackUrl: callbackUrl || "/dashboard",
+      redirect: false,
+    }).then(({ ok, error }: any) => {
+      if (ok) {
+        router.push("/dashboard");
+      } else {
+        console.log(error);
+        setShowInvalidCredentialError(true);
+      }
     });
   }
 
@@ -66,6 +78,11 @@ export default function LoginForm() {
             </FormItem>
           )}
         />
+        {showInvalidCredentialError && (
+          <p className="text-[0.8rem] font-medium text-destructive">
+            Invalid Credentials
+          </p>
+        )}
         <Button className="w-full">Submit</Button>
       </form>
     </Form>

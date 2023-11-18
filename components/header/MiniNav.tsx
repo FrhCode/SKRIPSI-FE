@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useState } from "react";
+import React, { RefObject, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import useStore from "@/zustand/store";
 import SunSvg from "../SunSvg";
@@ -16,11 +16,11 @@ interface miniNavProps {
   toogleButtonRef: RefObject<HTMLButtonElement>;
 }
 
-export default function MiniNav({ toogleButtonRef }: miniNavProps) {
+export default function MiniNav({}: miniNavProps) {
   const toggleIsNavOpen = useStore((state) => state.toggleIsNavOpen);
 
   useEffect(() => {
-    const miniNavHandler = (e: MouseEvent) => {
+    const miniNavHandler = () => {
       toggleIsNavOpen(false);
     };
 

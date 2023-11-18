@@ -11,16 +11,6 @@ import { getDieseSolutions } from "@/service/diese/getDieseSolution";
 import SolutionTable from "./components/TableSolution";
 import InvalidSessionException from "@/exception/InvalidSessionException";
 import { paginateSymtom } from "@/service/symptom/paginateSymptom";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { MoreHorizontalIcon } from "lucide-react";
-import { AiOutlinePlus } from "react-icons/ai";
 import DialogAddDiese from "./components/DialogAddDiese";
 import DieseDropdown from "./components/DieseDropdown";
 
